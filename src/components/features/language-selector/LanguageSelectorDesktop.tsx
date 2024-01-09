@@ -82,12 +82,15 @@ export const LanguageSelectorDesktop = ({ localeName, displayName }) => {
   };
 
   return (
-    <div className="relative block" ref={containerRef}>
+    <div className="pointer-events-auto relative block rounded-md" ref={containerRef}>
       <button
         aria-haspopup="true"
         aria-expanded={isOpen}
         aria-controls="menu-locale"
-        className="flex items-center font-normal uppercase"
+        className={twMerge(
+          'flex items-center rounded-md border-2 border-white px-2 font-normal uppercase hover:border-slate-700',
+          isOpen ? 'border-slate-700' : '',
+        )}
         onClick={() => setIsOpen(currentState => !currentState)}
       >
         <LanguageIcon width="18px" height="18px" variant="secondary" className="ml-1 mr-1" />
@@ -114,7 +117,7 @@ export const LanguageSelectorDesktop = ({ localeName, displayName }) => {
               <Link
                 onKeyDown={e => handleMenuItemKeydown(e, index)}
                 role="menuitem"
-                className="block rounded-lg p-2 capitalize hover:bg-zinc-300"
+                className="block rounded-lg border-2 border-white p-2 capitalize hover:border-slate-700 hover:bg-zinc-300"
                 href={{
                   pathname: router.pathname,
                   query: router.query,

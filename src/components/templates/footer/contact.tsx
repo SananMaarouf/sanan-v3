@@ -55,9 +55,9 @@ export const Contact = () => {
           <button
             type="submit"
             disabled={state.submitting}
-            className="inline-flex items-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className="inline-flex w-full rounded-md bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
-            {t('footer.contact.form.submit')}
+            <p className="mx-auto">{t('footer.contact.form.submit')}</p>
           </button>
           <ValidationError errors={state.errors} />
         </form>

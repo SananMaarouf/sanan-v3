@@ -10,7 +10,7 @@ export const Socials = () => {
       <h2 className="text-center">{t('footer.socials')}</h2>
       <Container className="mt-1 w-[24rem] md:mt-5 md:w-44">
         <a
-          className="flex flex-row justify-center rounded-lg bg-blue-600"
+          className="flex flex-row justify-center rounded-lg bg-blue-600 hover:bg-blue-900"
           href="https://www.linkedin.com/in/sanan-maarouf//"
           target="_blank"
           rel="noopener noreferrer"

@@ -12,19 +12,6 @@ export const Footer = () => {
         <Socials />
         <Contact />
       </div>
-      <Container className="py-8 text-center">
-        <div className="">
-          {t('footer.developedBy')}{' '}
-          <a
-            href="http://www.sanan.no"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500 hover:text-blue-700"
-          >
-            Sanan Maarouf
-          </a>
-        </div>
-      </Container>
     </footer>
   );
 };
