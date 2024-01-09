@@ -8,7 +8,7 @@ query pageAboutMe($locale: String, $preview: Boolean) {
       description {
         json
       }
-      portrait {
+      image {
         url
         width
         height

@@ -7,12 +7,12 @@ interface ArticleContentProps {
   article: PageBlogPostFieldsFragment;
 }
 export const ArticleContent = ({ article }: ArticleContentProps) => {
-  const { content } = article;
+  const { description } = article;
   const inspectorProps = useContentfulInspectorMode({ entryId: article.sys.id });
 
   return (
     <div {...inspectorProps({ fieldId: 'content' })}>
-      <CtfRichText json={content?.json} links={content?.links} />
+      <CtfRichText json={description?.json} links={description?.links} />
     </div>
   );
 };

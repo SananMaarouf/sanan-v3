@@ -43,9 +43,9 @@ const About = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
           <div className="order-1 flex h-full max-w-screen-lg overflow-hidden rounded-lg pb-2 lg:order-2">
             <CtfImage
               sys={page}
-              url={page?.portrait.url}
-              height={page?.portrait.height}
-              width={page?.portrait.width}
+              url={page?.image.url}
+              height={page?.image.height}
+              width={page?.image.width}
               nextImageProps={{ className: 'object-contain rounded-lg' }}
             />
           </div>

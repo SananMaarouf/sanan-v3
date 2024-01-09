@@ -1,22 +1,19 @@
-fragment ReferencePageBlogPostFields on PageBlogPost {
+fragment ReferencePageBlogPostFields on PostEntry {
   __typename
   sys {
     id
     spaceId
   }
   slug
-  author {
-    ...AuthorFields
-  }
   publishedDate
   title
   subtitle
-  featuredImage {
+  coverImage {
     ...ImageFields
   }
 }
 
-fragment PageBlogPostFields on PageBlogPost {
+fragment PageBlogPostFields on PostEntry {
   __typename
   sys {
     id
@@ -27,16 +24,13 @@ fragment PageBlogPostFields on PageBlogPost {
     ...SeoFields
   }
   slug
-  author {
-    ...AuthorFields
-  }
   publishedDate
   title
   subtitle
-  featuredImage {
+  coverImage {
     ...ImageFields
   }
-  content {
+  description {
     json
     links {
       entries {
@@ -46,7 +40,7 @@ fragment PageBlogPostFields on PageBlogPost {
       }
     }
   }
-  imageCollection(limit: 10) {
+  embeddedImageCollection(limit: 6) {
     items {
       fileName
         url
@@ -55,15 +49,10 @@ fragment PageBlogPostFields on PageBlogPost {
         size
     }
   }
-  relatedBlogPostsCollection(limit: 2) {
-    items {
-      ...ReferencePageBlogPostFields
-    }
-  }
 }
 
-query pageBlogPost($slug: String!, $locale: String, $preview: Boolean) {
-  pageBlogPostCollection(limit: 1, where: { slug: $slug }, locale: $locale, preview: $preview) {
+query postEntry($slug: String!, $locale: String, $preview: Boolean) {
+  postEntryCollection(limit: 1, where: { slug: $slug }, locale: $locale, preview: $preview) {
     items {
       ...PageBlogPostFields
     }

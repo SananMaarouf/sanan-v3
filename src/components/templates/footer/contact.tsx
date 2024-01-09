@@ -5,7 +5,7 @@ import { Container } from '@src/components/shared/container';
 export const Contact = () => {
   const { t } = useTranslation();
 
-  const [state, handleSubmit, resetForm] = useForm('xyyrgqea');
+  const [state, handleSubmit, resetForm] = useForm('mqkvqyvz');
 
   if (state.succeeded) {
     return (

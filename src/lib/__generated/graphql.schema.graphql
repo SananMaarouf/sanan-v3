@@ -90,12 +90,11 @@ input AssetFilter {
 }
 
 type AssetLinkingCollections {
-  componentAuthorCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentAuthorCollection
   componentRichImageCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentRichImageCollection
   componentSeoCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentSeoCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
   pageAboutMeCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): PageAboutMeCollection
-  pageBlogPostCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): PageBlogPostCollection
+  postEntryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): PostEntryCollection
 }
 
 enum AssetOrder {
@@ -122,87 +121,7 @@ enum AssetOrder {
 }
 
 """
-author of a post [See type definition](https://app.contentful.com/spaces/zk91f39k913n/content_types/componentAuthor)
-"""
-type ComponentAuthor implements Entry {
-  avatar(locale: String, preview: Boolean): Asset
-  contentfulMetadata: ContentfulMetadata!
-  internalName(locale: String): String
-  linkedFrom(allowedLocales: [String]): ComponentAuthorLinkingCollections
-  name(locale: String): String
-  sys: Sys!
-}
-
-type ComponentAuthorCollection {
-  items: [ComponentAuthor]!
-  limit: Int!
-  skip: Int!
-  total: Int!
-}
-
-input ComponentAuthorFilter {
-  AND: [ComponentAuthorFilter]
-  OR: [ComponentAuthorFilter]
-  avatar_exists: Boolean
-  contentfulMetadata: ContentfulMetadataFilter
-  internalName: String
-  internalName_contains: String
-  internalName_exists: Boolean
-  internalName_in: [String]
-  internalName_not: String
-  internalName_not_contains: String
-  internalName_not_in: [String]
-  name: String
-  name_contains: String
-  name_exists: Boolean
-  name_in: [String]
-  name_not: String
-  name_not_contains: String
-  name_not_in: [String]
-  sys: SysFilter
-}
-
-type ComponentAuthorLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  pageBlogPostCollection(limit: Int = 100, locale: String, order: [ComponentAuthorLinkingCollectionsPageBlogPostCollectionOrder], preview: Boolean, skip: Int = 0): PageBlogPostCollection
-}
-
-enum ComponentAuthorLinkingCollectionsPageBlogPostCollectionOrder {
-  internalName_ASC
-  internalName_DESC
-  publishedDate_ASC
-  publishedDate_DESC
-  slug_ASC
-  slug_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-  title_ASC
-  title_DESC
-}
-
-enum ComponentAuthorOrder {
-  internalName_ASC
-  internalName_DESC
-  name_ASC
-  name_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
-"""
-describe an image used in rich text fields [See type definition](https://app.contentful.com/spaces/zk91f39k913n/content_types/componentRichImage)
+describe an image used in rich text fields [See type definition](https://app.contentful.com/spaces/rxqss14ckb97/content_types/componentRichImage)
 """
 type ComponentRichImage implements Entry {
   caption(locale: String): String
@@ -268,10 +187,9 @@ enum ComponentRichImageOrder {
 }
 
 """
-To have SEO-related properties to the pages we render [See type definition](https://app.contentful.com/spaces/zk91f39k913n/content_types/componentSeo)
+[See type definition](https://app.contentful.com/spaces/rxqss14ckb97/content_types/componentSeo)
 """
 type ComponentSeo implements Entry {
-  canonicalUrl(locale: String): String
   contentfulMetadata: ContentfulMetadata!
   internalName(locale: String): String
   linkedFrom(allowedLocales: [String]): ComponentSeoLinkingCollections
@@ -293,13 +211,6 @@ type ComponentSeoCollection {
 input ComponentSeoFilter {
   AND: [ComponentSeoFilter]
   OR: [ComponentSeoFilter]
-  canonicalUrl: String
-  canonicalUrl_contains: String
-  canonicalUrl_exists: Boolean
-  canonicalUrl_in: [String]
-  canonicalUrl_not: String
-  canonicalUrl_not_contains: String
-  canonicalUrl_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
   internalName: String
   internalName_contains: String
@@ -334,11 +245,26 @@ input ComponentSeoFilter {
 
 type ComponentSeoLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  pageBlogPostCollection(limit: Int = 100, locale: String, order: [ComponentSeoLinkingCollectionsPageBlogPostCollectionOrder], preview: Boolean, skip: Int = 0): PageBlogPostCollection
   pageLandingCollection(limit: Int = 100, locale: String, order: [ComponentSeoLinkingCollectionsPageLandingCollectionOrder], preview: Boolean, skip: Int = 0): PageLandingCollection
+  postEntryCollection(limit: Int = 100, locale: String, order: [ComponentSeoLinkingCollectionsPostEntryCollectionOrder], preview: Boolean, skip: Int = 0): PostEntryCollection
 }
 
-enum ComponentSeoLinkingCollectionsPageBlogPostCollectionOrder {
+enum ComponentSeoLinkingCollectionsPageLandingCollectionOrder {
+  internalName_ASC
+  internalName_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+enum ComponentSeoLinkingCollectionsPostEntryCollectionOrder {
+  date_ASC
+  date_DESC
   internalName_ASC
   internalName_DESC
   publishedDate_ASC
@@ -357,22 +283,7 @@ enum ComponentSeoLinkingCollectionsPageBlogPostCollectionOrder {
   title_DESC
 }
 
-enum ComponentSeoLinkingCollectionsPageLandingCollectionOrder {
-  internalName_ASC
-  internalName_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
 enum ComponentSeoOrder {
-  canonicalUrl_ASC
-  canonicalUrl_DESC
   internalName_ASC
   internalName_DESC
   nofollow_ASC
@@ -596,13 +507,13 @@ scalar JSON
 
 """
 About you page. 
-Write who you are, what you do, how long you've done it and a picture of you [See type definition](https://app.contentful.com/spaces/zk91f39k913n/content_types/pageAboutMe)
+Write who you are, what you do, how long you've done it and a picture of you [See type definition](https://app.contentful.com/spaces/rxqss14ckb97/content_types/pageAboutMe)
 """
 type PageAboutMe implements Entry {
   contentfulMetadata: ContentfulMetadata!
   description(locale: String): PageAboutMeDescription
+  image(locale: String, preview: Boolean): Asset
   linkedFrom(allowedLocales: [String]): PageAboutMeLinkingCollections
-  portrait(locale: String, preview: Boolean): Asset
   sys: Sys!
   title(locale: String): String
 }
@@ -649,7 +560,7 @@ input PageAboutMeFilter {
   description_contains: String
   description_exists: Boolean
   description_not_contains: String
-  portrait_exists: Boolean
+  image_exists: Boolean
   sys: SysFilter
   title: String
   title_contains: String
@@ -678,204 +589,11 @@ enum PageAboutMeOrder {
 }
 
 """
-To create individual blog posts [See type definition](https://app.contentful.com/spaces/zk91f39k913n/content_types/pageBlogPost)
-"""
-type PageBlogPost implements Entry {
-  author(locale: String, preview: Boolean, where: ComponentAuthorFilter): ComponentAuthor
-  content(locale: String): PageBlogPostContent
-  contentfulMetadata: ContentfulMetadata!
-  featuredImage(locale: String, preview: Boolean): Asset
-  imageCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): AssetCollection
-  internalName(locale: String): String
-  linkedFrom(allowedLocales: [String]): PageBlogPostLinkingCollections
-  publishedDate(locale: String): DateTime
-  relatedBlogPostsCollection(limit: Int = 100, locale: String, order: [PageBlogPostRelatedBlogPostsCollectionOrder], preview: Boolean, skip: Int = 0, where: PageBlogPostFilter): PageBlogPostRelatedBlogPostsCollection
-  seoFields(locale: String, preview: Boolean, where: ComponentSeoFilter): ComponentSeo
-  slug(locale: String): String
-  subtitle(locale: String): String
-  sys: Sys!
-  title(locale: String): String
-}
-
-type PageBlogPostCollection {
-  items: [PageBlogPost]!
-  limit: Int!
-  skip: Int!
-  total: Int!
-}
-
-type PageBlogPostContent {
-  json: JSON!
-  links: PageBlogPostContentLinks!
-}
-
-type PageBlogPostContentAssets {
-  block: [Asset]!
-  hyperlink: [Asset]!
-}
-
-type PageBlogPostContentEntries {
-  block: [Entry]!
-  hyperlink: [Entry]!
-  inline: [Entry]!
-}
-
-type PageBlogPostContentLinks {
-  assets: PageBlogPostContentAssets!
-  entries: PageBlogPostContentEntries!
-  resources: PageBlogPostContentResources!
-}
-
-type PageBlogPostContentResources {
-  block: [ResourceLink!]!
-  hyperlink: [ResourceLink!]!
-  inline: [ResourceLink!]!
-}
-
-input PageBlogPostFilter {
-  AND: [PageBlogPostFilter]
-  OR: [PageBlogPostFilter]
-  author: cfComponentAuthorNestedFilter
-  author_exists: Boolean
-  content_contains: String
-  content_exists: Boolean
-  content_not_contains: String
-  contentfulMetadata: ContentfulMetadataFilter
-  featuredImage_exists: Boolean
-  imageCollection_exists: Boolean
-  internalName: String
-  internalName_contains: String
-  internalName_exists: Boolean
-  internalName_in: [String]
-  internalName_not: String
-  internalName_not_contains: String
-  internalName_not_in: [String]
-  publishedDate: DateTime
-  publishedDate_exists: Boolean
-  publishedDate_gt: DateTime
-  publishedDate_gte: DateTime
-  publishedDate_in: [DateTime]
-  publishedDate_lt: DateTime
-  publishedDate_lte: DateTime
-  publishedDate_not: DateTime
-  publishedDate_not_in: [DateTime]
-  relatedBlogPosts: cfPageBlogPostNestedFilter
-  relatedBlogPostsCollection_exists: Boolean
-  seoFields: cfComponentSeoNestedFilter
-  seoFields_exists: Boolean
-  slug: String
-  slug_contains: String
-  slug_exists: Boolean
-  slug_in: [String]
-  slug_not: String
-  slug_not_contains: String
-  slug_not_in: [String]
-  subtitle: String
-  subtitle_contains: String
-  subtitle_exists: Boolean
-  subtitle_in: [String]
-  subtitle_not: String
-  subtitle_not_contains: String
-  subtitle_not_in: [String]
-  sys: SysFilter
-  title: String
-  title_contains: String
-  title_exists: Boolean
-  title_in: [String]
-  title_not: String
-  title_not_contains: String
-  title_not_in: [String]
-}
-
-type PageBlogPostLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  pageBlogPostCollection(limit: Int = 100, locale: String, order: [PageBlogPostLinkingCollectionsPageBlogPostCollectionOrder], preview: Boolean, skip: Int = 0): PageBlogPostCollection
-  pageLandingCollection(limit: Int = 100, locale: String, order: [PageBlogPostLinkingCollectionsPageLandingCollectionOrder], preview: Boolean, skip: Int = 0): PageLandingCollection
-}
-
-enum PageBlogPostLinkingCollectionsPageBlogPostCollectionOrder {
-  internalName_ASC
-  internalName_DESC
-  publishedDate_ASC
-  publishedDate_DESC
-  slug_ASC
-  slug_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-  title_ASC
-  title_DESC
-}
-
-enum PageBlogPostLinkingCollectionsPageLandingCollectionOrder {
-  internalName_ASC
-  internalName_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
-enum PageBlogPostOrder {
-  internalName_ASC
-  internalName_DESC
-  publishedDate_ASC
-  publishedDate_DESC
-  slug_ASC
-  slug_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-  title_ASC
-  title_DESC
-}
-
-type PageBlogPostRelatedBlogPostsCollection {
-  items: [PageBlogPost]!
-  limit: Int!
-  skip: Int!
-  total: Int!
-}
-
-enum PageBlogPostRelatedBlogPostsCollectionOrder {
-  internalName_ASC
-  internalName_DESC
-  publishedDate_ASC
-  publishedDate_DESC
-  slug_ASC
-  slug_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-  title_ASC
-  title_DESC
-}
-
-"""
-To have an entry point for the app (e.g. Homepage) [See type definition](https://app.contentful.com/spaces/zk91f39k913n/content_types/pageLanding)
+[See type definition](https://app.contentful.com/spaces/rxqss14ckb97/content_types/pageLanding)
 """
 type PageLanding implements Entry {
   contentfulMetadata: ContentfulMetadata!
-  featuredBlogPost(locale: String, preview: Boolean, where: PageBlogPostFilter): PageBlogPost
+  featuredBlogPost(locale: String, preview: Boolean, where: PostEntryFilter): PostEntry
   internalName(locale: String): String
   linkedFrom(allowedLocales: [String]): PageLandingLinkingCollections
   seoFields(locale: String, preview: Boolean, where: ComponentSeoFilter): ComponentSeo
@@ -893,7 +611,7 @@ input PageLandingFilter {
   AND: [PageLandingFilter]
   OR: [PageLandingFilter]
   contentfulMetadata: ContentfulMetadataFilter
-  featuredBlogPost: cfPageBlogPostNestedFilter
+  featuredBlogPost: cfPostEntryNestedFilter
   featuredBlogPost_exists: Boolean
   internalName: String
   internalName_contains: String
@@ -925,6 +643,161 @@ enum PageLandingOrder {
 }
 
 """
+[See type definition](https://app.contentful.com/spaces/rxqss14ckb97/content_types/postEntry)
+"""
+type PostEntry implements Entry {
+  contentfulMetadata: ContentfulMetadata!
+  coverImage(locale: String, preview: Boolean): Asset
+  date(locale: String): DateTime
+  description(locale: String): PostEntryDescription
+  embeddedImageCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): AssetCollection
+  embeddedVideo(locale: String, preview: Boolean): Asset
+  internalName(locale: String): String
+  linkedFrom(allowedLocales: [String]): PostEntryLinkingCollections
+  publishedDate(locale: String): DateTime
+  seoFields(locale: String, preview: Boolean, where: ComponentSeoFilter): ComponentSeo
+  slug(locale: String): String
+  subtitle(locale: String): String
+  sys: Sys!
+  title(locale: String): String
+}
+
+type PostEntryCollection {
+  items: [PostEntry]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+type PostEntryDescription {
+  json: JSON!
+  links: PostEntryDescriptionLinks!
+}
+
+type PostEntryDescriptionAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type PostEntryDescriptionEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type PostEntryDescriptionLinks {
+  assets: PostEntryDescriptionAssets!
+  entries: PostEntryDescriptionEntries!
+  resources: PostEntryDescriptionResources!
+}
+
+type PostEntryDescriptionResources {
+  block: [ResourceLink!]!
+  hyperlink: [ResourceLink!]!
+  inline: [ResourceLink!]!
+}
+
+input PostEntryFilter {
+  AND: [PostEntryFilter]
+  OR: [PostEntryFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  coverImage_exists: Boolean
+  date: DateTime
+  date_exists: Boolean
+  date_gt: DateTime
+  date_gte: DateTime
+  date_in: [DateTime]
+  date_lt: DateTime
+  date_lte: DateTime
+  date_not: DateTime
+  date_not_in: [DateTime]
+  description_contains: String
+  description_exists: Boolean
+  description_not_contains: String
+  embeddedImageCollection_exists: Boolean
+  embeddedVideo_exists: Boolean
+  internalName: String
+  internalName_contains: String
+  internalName_exists: Boolean
+  internalName_in: [String]
+  internalName_not: String
+  internalName_not_contains: String
+  internalName_not_in: [String]
+  publishedDate: DateTime
+  publishedDate_exists: Boolean
+  publishedDate_gt: DateTime
+  publishedDate_gte: DateTime
+  publishedDate_in: [DateTime]
+  publishedDate_lt: DateTime
+  publishedDate_lte: DateTime
+  publishedDate_not: DateTime
+  publishedDate_not_in: [DateTime]
+  seoFields: cfComponentSeoNestedFilter
+  seoFields_exists: Boolean
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  subtitle: String
+  subtitle_contains: String
+  subtitle_exists: Boolean
+  subtitle_in: [String]
+  subtitle_not: String
+  subtitle_not_contains: String
+  subtitle_not_in: [String]
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+}
+
+type PostEntryLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  pageLandingCollection(limit: Int = 100, locale: String, order: [PostEntryLinkingCollectionsPageLandingCollectionOrder], preview: Boolean, skip: Int = 0): PageLandingCollection
+}
+
+enum PostEntryLinkingCollectionsPageLandingCollectionOrder {
+  internalName_ASC
+  internalName_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+enum PostEntryOrder {
+  date_ASC
+  date_DESC
+  internalName_ASC
+  internalName_DESC
+  publishedDate_ASC
+  publishedDate_DESC
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
+"""
 The 'Quality' type represents quality as whole numeric values between `1` and `100`.
 """
 scalar Quality
@@ -932,8 +805,6 @@ scalar Quality
 type Query {
   asset(id: String!, locale: String, preview: Boolean): Asset
   assetCollection(limit: Int = 100, locale: String, order: [AssetOrder], preview: Boolean, skip: Int = 0, where: AssetFilter): AssetCollection
-  componentAuthor(id: String!, locale: String, preview: Boolean): ComponentAuthor
-  componentAuthorCollection(limit: Int = 100, locale: String, order: [ComponentAuthorOrder], preview: Boolean, skip: Int = 0, where: ComponentAuthorFilter): ComponentAuthorCollection
   componentRichImage(id: String!, locale: String, preview: Boolean): ComponentRichImage
   componentRichImageCollection(limit: Int = 100, locale: String, order: [ComponentRichImageOrder], preview: Boolean, skip: Int = 0, where: ComponentRichImageFilter): ComponentRichImageCollection
   componentSeo(id: String!, locale: String, preview: Boolean): ComponentSeo
@@ -941,10 +812,10 @@ type Query {
   entryCollection(limit: Int = 100, locale: String, order: [EntryOrder], preview: Boolean, skip: Int = 0, where: EntryFilter): EntryCollection
   pageAboutMe(id: String!, locale: String, preview: Boolean): PageAboutMe
   pageAboutMeCollection(limit: Int = 100, locale: String, order: [PageAboutMeOrder], preview: Boolean, skip: Int = 0, where: PageAboutMeFilter): PageAboutMeCollection
-  pageBlogPost(id: String!, locale: String, preview: Boolean): PageBlogPost
-  pageBlogPostCollection(limit: Int = 100, locale: String, order: [PageBlogPostOrder], preview: Boolean, skip: Int = 0, where: PageBlogPostFilter): PageBlogPostCollection
   pageLanding(id: String!, locale: String, preview: Boolean): PageLanding
   pageLandingCollection(limit: Int = 100, locale: String, order: [PageLandingOrder], preview: Boolean, skip: Int = 0, where: PageLandingFilter): PageLandingCollection
+  postEntry(id: String!, locale: String, preview: Boolean): PostEntry
+  postEntryCollection(limit: Int = 100, locale: String, order: [PostEntryOrder], preview: Boolean, skip: Int = 0, where: PostEntryFilter): PostEntryCollection
 }
 
 type ResourceLink {
@@ -1003,38 +874,9 @@ input SysFilter {
   publishedVersion_not_in: [Float]
 }
 
-input cfComponentAuthorNestedFilter {
-  AND: [cfComponentAuthorNestedFilter]
-  OR: [cfComponentAuthorNestedFilter]
-  avatar_exists: Boolean
-  contentfulMetadata: ContentfulMetadataFilter
-  internalName: String
-  internalName_contains: String
-  internalName_exists: Boolean
-  internalName_in: [String]
-  internalName_not: String
-  internalName_not_contains: String
-  internalName_not_in: [String]
-  name: String
-  name_contains: String
-  name_exists: Boolean
-  name_in: [String]
-  name_not: String
-  name_not_contains: String
-  name_not_in: [String]
-  sys: SysFilter
-}
-
 input cfComponentSeoNestedFilter {
   AND: [cfComponentSeoNestedFilter]
   OR: [cfComponentSeoNestedFilter]
-  canonicalUrl: String
-  canonicalUrl_contains: String
-  canonicalUrl_exists: Boolean
-  canonicalUrl_in: [String]
-  canonicalUrl_not: String
-  canonicalUrl_not_contains: String
-  canonicalUrl_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
   internalName: String
   internalName_contains: String
@@ -1067,16 +909,25 @@ input cfComponentSeoNestedFilter {
   sys: SysFilter
 }
 
-input cfPageBlogPostNestedFilter {
-  AND: [cfPageBlogPostNestedFilter]
-  OR: [cfPageBlogPostNestedFilter]
-  author_exists: Boolean
-  content_contains: String
-  content_exists: Boolean
-  content_not_contains: String
+input cfPostEntryNestedFilter {
+  AND: [cfPostEntryNestedFilter]
+  OR: [cfPostEntryNestedFilter]
   contentfulMetadata: ContentfulMetadataFilter
-  featuredImage_exists: Boolean
-  imageCollection_exists: Boolean
+  coverImage_exists: Boolean
+  date: DateTime
+  date_exists: Boolean
+  date_gt: DateTime
+  date_gte: DateTime
+  date_in: [DateTime]
+  date_lt: DateTime
+  date_lte: DateTime
+  date_not: DateTime
+  date_not_in: [DateTime]
+  description_contains: String
+  description_exists: Boolean
+  description_not_contains: String
+  embeddedImageCollection_exists: Boolean
+  embeddedVideo_exists: Boolean
   internalName: String
   internalName_contains: String
   internalName_exists: Boolean
@@ -1093,7 +944,6 @@ input cfPageBlogPostNestedFilter {
   publishedDate_lte: DateTime
   publishedDate_not: DateTime
   publishedDate_not_in: [DateTime]
-  relatedBlogPostsCollection_exists: Boolean
   seoFields_exists: Boolean
   slug: String
   slug_contains: String

@@ -2,7 +2,6 @@ fragment SeoFields on ComponentSeo {
   __typename
   pageTitle
   pageDescription
-  canonicalUrl
   nofollow
   noindex
   shareImagesCollection(limit: 3, locale: $locale) {

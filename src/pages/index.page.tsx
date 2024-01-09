@@ -7,7 +7,7 @@ import { FeaturedArticleHero } from '@src/components/features/article';
 import { ArticleSlider } from '@src/components/ArticleSlider';
 import { SeoFields } from '@src/components/features/seo';
 import { Container } from '@src/components/shared/container';
-import { PageBlogPostOrder } from '@src/lib/__generated/sdk';
+import { PostEntryOrder } from '@src/lib/__generated/sdk';
 import { client, previewClient } from '@src/lib/client';
 import { revalidateDuration } from '@src/pages/utils/constants';
 
@@ -42,16 +42,16 @@ export const getStaticProps: GetStaticProps = async ({ locale, draftMode: previe
     const landingPageData = await gqlClient.pageLanding({ locale, preview });
     const page = landingPageData.pageLandingCollection?.items[0];
 
-    const blogPostsData = await gqlClient.pageBlogPostCollection({
+    const blogPostsData = await gqlClient.postEntryCollection({
       limit: 6,
       locale,
-      order: PageBlogPostOrder.PublishedDateDesc,
+      order: PostEntryOrder.PublishedDateDesc,
       where: {
         slug_not: page?.featuredBlogPost?.slug,
       },
       preview,
     });
-    const posts = blogPostsData.pageBlogPostCollection?.items;
+    const posts = blogPostsData.postEntryCollection?.items;
 
     return {
       revalidate: revalidateDuration,

@@ -43,11 +43,11 @@ export const ArticleTile = ({ article }: ArticleTileProps) => {
        the div on articleslider.tsx */
     <Link className="flex h-full w-full flex-col" href={`/${article.slug}`}>
       <div className="flex h-full w-full flex-col overflow-hidden rounded-2xl border border-gray-300 shadow-sm">
-        {article.featuredImage && (
-          <div {...inspectorProps({ fieldId: 'featuredImage' })}>
+        {article.coverImage && (
+          <div {...inspectorProps({ fieldId: 'coverImage' })}>
             <CtfImage
               nextImageProps={{ className: 'object-cover aspect-[16/10] w-full' }}
-              {...article.featuredImage}
+              {...article.coverImage}
             />
           </div>
         )}

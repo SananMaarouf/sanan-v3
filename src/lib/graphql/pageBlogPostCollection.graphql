@@ -1,11 +1,11 @@
-query pageBlogPostCollection(
+query postEntryCollection(
   $locale: String
   $preview: Boolean
   $limit: Int
-  $order: [PageBlogPostOrder]
-  $where: PageBlogPostFilter
+  $order: [PostEntryOrder]
+  $where: PostEntryFilter
 ) {
-  pageBlogPostCollection(limit: $limit, locale: $locale, preview: $preview, order: $order where: $where) {
+  postEntryCollection(limit: $limit, locale: $locale, preview: $preview, order: $order where: $where) {
     items {
       ...PageBlogPostFields
     }

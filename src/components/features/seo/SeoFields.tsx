@@ -13,7 +13,6 @@ export const SeoFields = ({
   pageDescription,
   noindex,
   nofollow,
-  canonicalUrl,
   shareImagesCollection,
 }: SeoFieldsFragment) => {
   const { locale, locales, asPath } = useRouter();
@@ -30,7 +29,6 @@ export const SeoFields = ({
     <NextSeo
       title={pageTitle || undefined}
       description={pageDescription || undefined}
-      canonical={canonicalUrl || url || ''}
       nofollow={nofollow || false}
       noindex={noindex || false}
       languageAlternates={languageAlternates}

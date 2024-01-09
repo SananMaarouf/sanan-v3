@@ -81,7 +81,7 @@ export const ArticleHero = ({ article }: ArticleHeroProps) => {
       <div className="xl:px-24 flex max-w-xl flex-col px-4 pb-6 lg:px-16 ">
         <Gallery>
           <Slider {...settings}>
-            {article?.imageCollection?.items?.map((imageAsset, index) => (
+            {article?.embeddedImageCollection?.items?.map((imageAsset, index) => (
               <Item
                 key={index}
                 original={imageAsset?.url ?? undefined}

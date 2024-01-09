@@ -67,11 +67,11 @@ export const getStaticProps: GetStaticProps = async ({ params, locale, draftMode
 
   try {
     const [blogPageData, landingPageData] = await Promise.all([
-      gqlClient.pageBlogPost({ slug: params.slug.toString(), locale, preview }),
+      gqlClient.postEntry({ slug: params.slug.toString(), locale, preview }),
       gqlClient.pageLanding({ locale, preview }),
     ]);
 
-    const blogPost = blogPageData.pageBlogPostCollection?.items[0];
+    const blogPost = blogPageData.postEntryCollection?.items[0];
     const landingPage = landingPageData.pageLandingCollection?.items[0];
 
     const isFeatured = landingPage?.featuredBlogPost?.slug === blogPost?.slug;
@@ -102,14 +102,12 @@ export const getStaticProps: GetStaticProps = async ({ params, locale, draftMode
 
 export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const dataPerLocale = locales
-    ? await Promise.all(
-        locales.map(locale => client.pageBlogPostCollection({ locale, limit: 100 })),
-      )
+    ? await Promise.all(locales.map(locale => client.postEntryCollection({ locale, limit: 2 })))
     : [];
 
   const paths = dataPerLocale
     .flatMap((data, index) =>
-      data.pageBlogPostCollection?.items.map(blogPost =>
+      data.postEntryCollection?.items.map(blogPost =>
         blogPost?.slug
           ? {
               params: {

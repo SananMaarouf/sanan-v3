@@ -56,14 +56,14 @@ export const FeaturedArticleHero = ({ article }: ArticleHeroProps) => {
         className="flex md:max-w-lg lg:max-w-3xl"
         {...inspectorProps({ fieldId: 'featuredImage' })}
       >
-        {article.featuredImage && (
+        {article.coverImage && (
           <CtfImage
             nextImageProps={{
               className: 'object-cover w-full h-full',
               priority: true,
               sizes: undefined,
             }}
-            {...article.featuredImage}
+            {...article.coverImage}
           />
         )}
       </div>

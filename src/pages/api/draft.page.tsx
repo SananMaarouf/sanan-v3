@@ -34,13 +34,13 @@ export default async (req, res) => {
   // Check for a slug, if no slug is passed we assume we need to redirect to the root
   if (slug) {
     try {
-      const blogPageData = await previewClient.pageBlogPost({
+      const blogPageData = await previewClient.postEntry({
         slug,
         locale,
         preview: true,
       });
 
-      const blogPost = blogPageData.pageBlogPostCollection?.items[0];
+      const blogPost = blogPageData.postEntryCollection?.items[0];
 
       if (!blogPost) {
         throw Error();

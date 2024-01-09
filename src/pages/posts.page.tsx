@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next';
 import { getServerSideTranslations } from './utils/get-serverside-translations';
 import { ArticleTileGrid } from '@src/components/features/article';
 import { Container } from '@src/components/shared/container';
-import { PageBlogPostOrder } from '@src/lib/__generated/sdk';
+import { PostEntryOrder } from '@src/lib/__generated/sdk';
 import { client, previewClient } from '@src/lib/client';
 import { revalidateDuration } from '@src/pages/utils/constants';
 
@@ -54,14 +54,14 @@ export const getStaticProps: GetStaticProps = async ({ locale, draftMode: previe
     const PostsData = await gqlClient.pageLanding({ locale, preview });
     const page = PostsData.pageLandingCollection?.items[0];
 
-    const blogPostsData = await gqlClient.pageBlogPostCollection({
-      limit: 99,
+    const blogPostsData = await gqlClient.postEntryCollection({
+      limit: 10,
       locale,
-      order: PageBlogPostOrder.PublishedDateDesc,
+      order: PostEntryOrder.PublishedDateDesc,
 
       preview,
     });
-    const posts = blogPostsData.pageBlogPostCollection?.items;
+    const posts = blogPostsData.postEntryCollection?.items;
 
     if (!page) {
       return {
