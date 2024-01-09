@@ -11,7 +11,7 @@
   },
   "landingPage": {
     "no_articles": "No posts found",
-    "latestArticles": "Other pieces"
+    "latestArticles": "Other projects"
   },
   "common": {
     "regionalSettings": "Regional Settings",
@@ -27,7 +27,7 @@
   "footer": {
     "aboutUs": "about me",
     "developedBy": "Developed by",
-    "socials": "Social media",
+    "socials": "Socials",
     "contact": {
       "title": "Contact me",
       "form": {

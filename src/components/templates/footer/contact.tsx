@@ -27,7 +27,7 @@ export const Contact = () => {
   return (
     /* add flex-row when you want to implement a sitemap or another column  */
     <div className="mt-3 md:mt-0">
-      <h2 className="text-center">{t('footer.contact.title')}</h2>
+      <h2 className="text-center font-semibold">{t('footer.contact.title')}</h2>
       <Container className="mt-1 flex flex-col justify-center md:mt-3">
         <form
           onSubmit={handleSubmit}

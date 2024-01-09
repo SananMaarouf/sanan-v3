@@ -8,17 +8,17 @@ export const Socials = () => {
   return (
     <div>
       <h2 className="text-center">{t('footer.socials')}</h2>
-      <Container className="mt-1 max-w-[26rem] md:mt-5">
+      <Container className="mt-1 w-[24rem] md:mt-5 md:w-44">
         <a
           className="flex flex-row justify-center rounded-lg bg-blue-600"
           href="https://www.linkedin.com/in/sanan-maarouf//"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <button className="mr-2 w-6 self-center">
-            <FontAwesomeIcon icon={faLinkedin} size="lg" style={{ color: '#ffffff' }} />
+          <p className="ml-2 py-2 text-lg font-semibold text-white">Linked</p>
+          <button className="ml-0.5 mr-2 block w-6 self-center">
+            <FontAwesomeIcon icon={faLinkedin} style={{ color: '#ffffff' }} />
           </button>
-          <p className="py-2 text-lg font-semibold text-white">Linkedin</p>
         </a>
       </Container>
     </div>
