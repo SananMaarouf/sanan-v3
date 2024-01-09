@@ -15,8 +15,8 @@ export const Socials = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <button className="mr-2 self-center">
-            <FontAwesomeIcon icon={faLinkedin} size="xl" style={{ color: '#ffffff' }} />
+          <button className="mr-2 w-6 self-center">
+            <FontAwesomeIcon icon={faLinkedin} size="lg" style={{ color: '#ffffff' }} />
           </button>
           <p className="py-2 text-lg font-semibold text-white">Linkedin</p>
         </a>
