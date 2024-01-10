@@ -1,3 +1,22 @@
+fragment AboutMeFields on PageAboutMe {
+  sys {
+    id
+  }
+  title
+  description {
+    json
+  }
+  image {
+    sys {
+      id
+    }
+    url
+    width
+    height
+    title
+  }
+}
+
 query pageAboutMe($locale: String, $preview: Boolean) {
   pageAboutMeCollection(locale: $locale, preview: $preview) {
     items {

@@ -1,7 +1,7 @@
 import { HTMLProps } from 'react';
 import Carousel from 'react-grid-carousel';
 import { useTranslation } from 'next-i18next';
-import { ArticleTile } from '@src/components/features/article/ArticleTile';
+import { ArticleTile } from 'src/components/features/article/ArticleTile';
 import { PageBlogPostFieldsFragment } from '@src/lib/__generated/sdk';
 
 interface SliderProps extends HTMLProps<HTMLDivElement> {
@@ -28,10 +28,10 @@ export const ArticleSlider = ({ articles }: SliderProps) => {
       ]}
       mobileBreakpoint={300}
     >
-      {articles.map((article, index) => {
+      {articles.map(article => {
         return article ? (
-          <Carousel.Item>
-            <div key={index} className="flex h-full w-full flex-col">
+          <Carousel.Item key={article.sys.id}>
+            <div className="flex h-full w-full flex-col">
               <ArticleTile article={article} />
             </div>
           </Carousel.Item>

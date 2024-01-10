@@ -826,19 +826,10 @@ export enum PageAboutMeOrder {
 export type PageLanding = Entry & {
   __typename?: 'PageLanding';
   contentfulMetadata: ContentfulMetadata;
-  featuredBlogPost?: Maybe<PostEntry>;
   internalName?: Maybe<Scalars['String']>;
   linkedFrom?: Maybe<PageLandingLinkingCollections>;
   seoFields?: Maybe<ComponentSeo>;
   sys: Sys;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/rxqss14ckb97/content_types/pageLanding) */
-export type PageLandingFeaturedBlogPostArgs = {
-  locale?: InputMaybe<Scalars['String']>;
-  preview?: InputMaybe<Scalars['Boolean']>;
-  where?: InputMaybe<PostEntryFilter>;
 };
 
 
@@ -873,8 +864,6 @@ export type PageLandingFilter = {
   AND?: InputMaybe<Array<InputMaybe<PageLandingFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<PageLandingFilter>>>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
-  featuredBlogPost?: InputMaybe<CfPostEntryNestedFilter>;
-  featuredBlogPost_exists?: InputMaybe<Scalars['Boolean']>;
   internalName?: InputMaybe<Scalars['String']>;
   internalName_contains?: InputMaybe<Scalars['String']>;
   internalName_exists?: InputMaybe<Scalars['Boolean']>;
@@ -1116,7 +1105,6 @@ export type PostEntryFilter = {
 export type PostEntryLinkingCollections = {
   __typename?: 'PostEntryLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
-  pageLandingCollection?: Maybe<PageLandingCollection>;
 };
 
 
@@ -1126,28 +1114,6 @@ export type PostEntryLinkingCollectionsEntryCollectionArgs = {
   preview?: InputMaybe<Scalars['Boolean']>;
   skip?: InputMaybe<Scalars['Int']>;
 };
-
-
-export type PostEntryLinkingCollectionsPageLandingCollectionArgs = {
-  limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Scalars['String']>;
-  order?: InputMaybe<Array<InputMaybe<PostEntryLinkingCollectionsPageLandingCollectionOrder>>>;
-  preview?: InputMaybe<Scalars['Boolean']>;
-  skip?: InputMaybe<Scalars['Int']>;
-};
-
-export enum PostEntryLinkingCollectionsPageLandingCollectionOrder {
-  InternalNameAsc = 'internalName_ASC',
-  InternalNameDesc = 'internalName_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
 
 export enum PostEntryOrder {
   DateAsc = 'date_ASC',
@@ -1393,67 +1359,9 @@ export type CfComponentSeoNestedFilter = {
   sys?: InputMaybe<SysFilter>;
 };
 
-export type CfPostEntryNestedFilter = {
-  AND?: InputMaybe<Array<InputMaybe<CfPostEntryNestedFilter>>>;
-  OR?: InputMaybe<Array<InputMaybe<CfPostEntryNestedFilter>>>;
-  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
-  coverImage_exists?: InputMaybe<Scalars['Boolean']>;
-  date?: InputMaybe<Scalars['DateTime']>;
-  date_exists?: InputMaybe<Scalars['Boolean']>;
-  date_gt?: InputMaybe<Scalars['DateTime']>;
-  date_gte?: InputMaybe<Scalars['DateTime']>;
-  date_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
-  date_lt?: InputMaybe<Scalars['DateTime']>;
-  date_lte?: InputMaybe<Scalars['DateTime']>;
-  date_not?: InputMaybe<Scalars['DateTime']>;
-  date_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
-  description_contains?: InputMaybe<Scalars['String']>;
-  description_exists?: InputMaybe<Scalars['Boolean']>;
-  description_not_contains?: InputMaybe<Scalars['String']>;
-  embeddedImageCollection_exists?: InputMaybe<Scalars['Boolean']>;
-  embeddedVideo_exists?: InputMaybe<Scalars['Boolean']>;
-  internalName?: InputMaybe<Scalars['String']>;
-  internalName_contains?: InputMaybe<Scalars['String']>;
-  internalName_exists?: InputMaybe<Scalars['Boolean']>;
-  internalName_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  internalName_not?: InputMaybe<Scalars['String']>;
-  internalName_not_contains?: InputMaybe<Scalars['String']>;
-  internalName_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  publishedDate?: InputMaybe<Scalars['DateTime']>;
-  publishedDate_exists?: InputMaybe<Scalars['Boolean']>;
-  publishedDate_gt?: InputMaybe<Scalars['DateTime']>;
-  publishedDate_gte?: InputMaybe<Scalars['DateTime']>;
-  publishedDate_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
-  publishedDate_lt?: InputMaybe<Scalars['DateTime']>;
-  publishedDate_lte?: InputMaybe<Scalars['DateTime']>;
-  publishedDate_not?: InputMaybe<Scalars['DateTime']>;
-  publishedDate_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
-  seoFields_exists?: InputMaybe<Scalars['Boolean']>;
-  slug?: InputMaybe<Scalars['String']>;
-  slug_contains?: InputMaybe<Scalars['String']>;
-  slug_exists?: InputMaybe<Scalars['Boolean']>;
-  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  slug_not?: InputMaybe<Scalars['String']>;
-  slug_not_contains?: InputMaybe<Scalars['String']>;
-  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  subtitle?: InputMaybe<Scalars['String']>;
-  subtitle_contains?: InputMaybe<Scalars['String']>;
-  subtitle_exists?: InputMaybe<Scalars['Boolean']>;
-  subtitle_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  subtitle_not?: InputMaybe<Scalars['String']>;
-  subtitle_not_contains?: InputMaybe<Scalars['String']>;
-  subtitle_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  sys?: InputMaybe<SysFilter>;
-  title?: InputMaybe<Scalars['String']>;
-  title_contains?: InputMaybe<Scalars['String']>;
-  title_exists?: InputMaybe<Scalars['Boolean']>;
-  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  title_not?: InputMaybe<Scalars['String']>;
-  title_not_contains?: InputMaybe<Scalars['String']>;
-  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
 export type ImageFieldsFragment = { __typename: 'Asset', title?: string | null, description?: string | null, width?: number | null, height?: number | null, url?: string | null, contentType?: string | null, sys: { __typename?: 'Sys', id: string } };
+
+export type AboutMeFieldsFragment = { __typename?: 'PageAboutMe', title?: string | null, sys: { __typename?: 'Sys', id: string }, description?: { __typename?: 'PageAboutMeDescription', json: any } | null, image?: { __typename?: 'Asset', url?: string | null, width?: number | null, height?: number | null, title?: string | null, sys: { __typename?: 'Sys', id: string } } | null };
 
 export type PageAboutMeQueryVariables = Exact<{
   locale?: InputMaybe<Scalars['String']>;
@@ -1508,9 +1416,6 @@ export type PostEntryCollectionQuery = { __typename?: 'Query', postEntryCollecti
 export type PageLandingFieldsFragment = { __typename: 'PageLanding', internalName?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, seoFields?: (
     { __typename?: 'ComponentSeo' }
     & SeoFieldsFragment
-  ) | null, featuredBlogPost?: (
-    { __typename?: 'PostEntry' }
-    & ReferencePageBlogPostFieldsFragment
   ) | null };
 
 export type PageLandingQueryVariables = Exact<{
@@ -1557,6 +1462,26 @@ export type SitemapPagesQuery = (
   & SitemapPagesFieldsFragment
 );
 
+export const AboutMeFieldsFragmentDoc = gql`
+    fragment AboutMeFields on PageAboutMe {
+  sys {
+    id
+  }
+  title
+  description {
+    json
+  }
+  image {
+    sys {
+      id
+    }
+    url
+    width
+    height
+    title
+  }
+}
+    `;
 export const ImageFieldsFragmentDoc = gql`
     fragment ImageFields on Asset {
   __typename
@@ -1569,6 +1494,22 @@ export const ImageFieldsFragmentDoc = gql`
   height
   url
   contentType
+}
+    `;
+export const ReferencePageBlogPostFieldsFragmentDoc = gql`
+    fragment ReferencePageBlogPostFields on PostEntry {
+  __typename
+  sys {
+    id
+    spaceId
+  }
+  slug
+  publishedDate
+  title
+  subtitle
+  coverImage {
+    ...ImageFields
+  }
 }
     `;
 export const SeoFieldsFragmentDoc = gql`
@@ -1638,22 +1579,6 @@ export const PageBlogPostFieldsFragmentDoc = gql`
   }
 }
     `;
-export const ReferencePageBlogPostFieldsFragmentDoc = gql`
-    fragment ReferencePageBlogPostFields on PostEntry {
-  __typename
-  sys {
-    id
-    spaceId
-  }
-  slug
-  publishedDate
-  title
-  subtitle
-  coverImage {
-    ...ImageFields
-  }
-}
-    `;
 export const PageLandingFieldsFragmentDoc = gql`
     fragment PageLandingFields on PageLanding {
   __typename
@@ -1664,9 +1589,6 @@ export const PageLandingFieldsFragmentDoc = gql`
   internalName
   seoFields {
     ...SeoFields
-  }
-  featuredBlogPost {
-    ...ReferencePageBlogPostFields
   }
 }
     `;
@@ -1754,8 +1676,7 @@ export const PageLandingDocument = gql`
 }
     ${PageLandingFieldsFragmentDoc}
 ${SeoFieldsFragmentDoc}
-${ImageFieldsFragmentDoc}
-${ReferencePageBlogPostFieldsFragmentDoc}`;
+${ImageFieldsFragmentDoc}`;
 export const PageLandingCollectionDocument = gql`
     query pageLandingCollection($locale: String, $preview: Boolean) {
   pageLandingCollection(limit: 10, locale: $locale, preview: $preview) {
@@ -1766,8 +1687,7 @@ export const PageLandingCollectionDocument = gql`
 }
     ${PageLandingFieldsFragmentDoc}
 ${SeoFieldsFragmentDoc}
-${ImageFieldsFragmentDoc}
-${ReferencePageBlogPostFieldsFragmentDoc}`;
+${ImageFieldsFragmentDoc}`;
 export const SitemapPagesDocument = gql`
     query sitemapPages($locale: String!) {
   ...sitemapPagesFields

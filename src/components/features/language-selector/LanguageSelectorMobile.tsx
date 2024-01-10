@@ -64,14 +64,6 @@ export const LanguageSelectorMobile = ({ localeName, displayName }) => {
             </div>
             <div className="mt-10 flex flex-col space-y-6 ">
               <Link
-                href="/about"
-                title="About Me"
-                className="hover:underline"
-                onClick={() => setShowDrawer(false)}
-              >
-                {t('header.about')}
-              </Link>
-              <Link
                 href="/posts"
                 title="Projects"
                 className="hover:underline"

@@ -8,9 +8,6 @@ fragment PageLandingFields on PageLanding {
   seoFields {
     ...SeoFields
   }
-  featuredBlogPost {
-    ...ReferencePageBlogPostFields
-  }
 }
 
 query pageLanding($locale: String, $preview: Boolean) {

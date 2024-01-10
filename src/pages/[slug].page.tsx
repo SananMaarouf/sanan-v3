@@ -74,8 +74,6 @@ export const getStaticProps: GetStaticProps = async ({ params, locale, draftMode
     const blogPost = blogPageData.postEntryCollection?.items[0];
     const landingPage = landingPageData.pageLandingCollection?.items[0];
 
-    const isFeatured = landingPage?.featuredBlogPost?.slug === blogPost?.slug;
-
     if (!blogPost) {
       return {
         notFound: true,
@@ -89,7 +87,6 @@ export const getStaticProps: GetStaticProps = async ({ params, locale, draftMode
         ...(await getServerSideTranslations(locale)),
         previewActive: !!preview,
         blogPost,
-        isFeatured,
       },
     };
   } catch {

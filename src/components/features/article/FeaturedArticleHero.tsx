@@ -3,7 +3,7 @@ import React from 'react';
 import { twMerge } from 'tailwind-merge';
 import { CtfImage } from '@src/components/features/contentful';
 import { FormatDate } from '@src/components/shared/format-date';
-import { PageBlogPostFieldsFragment } from '@src/lib/__generated/sdk';
+import { PageBlogPostFieldsFragment, AboutMeFieldsFragment } from '@src/lib/__generated/sdk';
 /**
  * This file defines a React component named `ArticleHero2` that is used to display a hero section for an article.
  * The component takes in an `article` object, a `isFeatured` boolean, and a `isReversedLayout` boolean as props.
@@ -22,48 +22,41 @@ import { PageBlogPostFieldsFragment } from '@src/lib/__generated/sdk';
  */
 
 interface ArticleHeroProps {
-  article: PageBlogPostFieldsFragment;
-  isFeatured?: boolean;
+  article: AboutMeFieldsFragment;
 }
 
 export const FeaturedArticleHero = ({ article }: ArticleHeroProps) => {
   /* const { t } = useTranslation(); */
   const inspectorProps = useContentfulInspectorMode({ entryId: article.sys.id });
-  const { title, subtitle, publishedDate } = article;
+  const { title, description } = article;
   return (
     /*     <motion.div whileHover={{scale:1.05}}> */
-    <div className="flex flex-col overflow-hidden rounded-2xl border border-gray-300 md:flex-row landscape:flex-row">
+    <div
+      id="about"
+      className="flex flex-col overflow-hidden rounded-2xl border border-gray-300 md:flex-row landscape:flex-row"
+    >
       {/* the title, subtitle, date */}
       <div className="xl:pl-12 relative flex flex-1 basis-1/2 flex-col px-4 py-6 lg:py-12 ">
         <h1 className="text-3xl" {...inspectorProps({ fieldId: 'title' })}>
           {title}
         </h1>
         <div className="flex grow flex-col justify-between">
-          {subtitle && (
+          {description && (
             <p className="mt-2 text-lg md:mt-4" {...inspectorProps({ fieldId: 'subtitle' })}>
-              {subtitle}
+              {description.json.content[0].content[0].value}
             </p>
           )}
-          <div
-            className={twMerge('mr-auto hidden text-lg md:block')}
-            {...inspectorProps({ fieldId: 'publishedDate' })}
-          >
-            <FormatDate date={publishedDate} />
-          </div>
         </div>
       </div>
-      <div
-        className="flex md:max-w-lg lg:max-w-3xl"
-        {...inspectorProps({ fieldId: 'featuredImage' })}
-      >
-        {article.coverImage && (
+      <div className="flex md:max-w-lg lg:max-w-xl" {...inspectorProps({ fieldId: 'image' })}>
+        {article.image && (
           <CtfImage
             nextImageProps={{
-              className: 'object-cover w-full h-full',
+              className: 'w-1/2 object-cover',
               priority: true,
               sizes: undefined,
             }}
-            {...article.coverImage}
+            {...article.image}
           />
         )}
       </div>

@@ -1,6 +1,6 @@
-import { useContentfulInspectorMode } from '@contentful/live-preview/react';
 import Link from 'next/link';
 import { HTMLProps } from 'react';
+import { useContentfulInspectorMode } from '@contentful/live-preview/react';
 import { CtfImage } from '@src/components/features/contentful';
 import { PageBlogPostFieldsFragment } from '@src/lib/__generated/sdk';
 
