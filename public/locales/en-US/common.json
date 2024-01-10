@@ -11,7 +11,7 @@
   },
   "landingPage": {
     "no_articles": "No posts found",
-    "latestArticles": "Other projects"
+    "latestArticles": "Projects"
   },
   "common": {
     "regionalSettings": "Regional Settings",
@@ -21,7 +21,7 @@
   },
   "header": {
     "about": "About me",
-    "posts": "Posts",
+    "posts": "Projects",
     "contact": "Contact me"
 },
   "footer": {
