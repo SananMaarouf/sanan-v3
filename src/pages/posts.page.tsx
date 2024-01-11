@@ -34,13 +34,12 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const page = useContentfulLiveUpdates(props.page);
   const posts = useContentfulLiveUpdates(props.posts);
 
-  if (!page?.featuredBlogPost || !posts) return;
+  if (!posts) return;
 
   return (
     <>
       <Container className="my-8  md:mb-10 lg:mb-16">
         <h2 className="mb-4 md:mb-6">{t('posts.allPosts')}</h2>
-
         <ArticleTileGrid className="md:grid-cols-2 lg:grid-cols-3" articles={posts} />
       </Container>
     </>
@@ -51,9 +50,6 @@ export const getStaticProps: GetStaticProps = async ({ locale, draftMode: previe
   try {
     const gqlClient = preview ? previewClient : client;
 
-    const PostsData = await gqlClient.pageLanding({ locale, preview });
-    const page = PostsData.pageLandingCollection?.items[0];
-
     const blogPostsData = await gqlClient.postEntryCollection({
       limit: 10,
       locale,
@@ -63,19 +59,11 @@ export const getStaticProps: GetStaticProps = async ({ locale, draftMode: previe
     });
     const posts = blogPostsData.postEntryCollection?.items;
 
-    if (!page) {
-      return {
-        revalidate: revalidateDuration,
-        notFound: true,
-      };
-    }
-
     return {
       revalidate: revalidateDuration,
       props: {
         previewActive: !!preview,
         ...(await getServerSideTranslations(locale)),
-        page,
         posts,
       },
     };
