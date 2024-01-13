@@ -12,6 +12,7 @@ import { revalidateDuration } from '@src/pages/utils/constants';
 import { ArticleSlider } from '../components/ArticleSlider';
 import { LandingHero } from '../components/LandingHero';
 import { motion } from 'framer-motion';
+import { AboutHero } from '../components/AboutHero';
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { t } = useTranslation();
 
@@ -31,11 +32,16 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
           <LandingHero />
         </Container>
       </motion.div>
-
-      <Container className="mt-4">
-        <p>hello</p>
-      </Container>
-
+      <motion.div
+        initial={{ opacity: 0, y: +100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ ease: 'circOut', duration: 0.3 }}
+        exit={{ opacity: 0 }}
+      >
+        <Container className="mt-4">
+          <AboutHero />
+        </Container>
+      </motion.div>
       <motion.div
         initial={{ opacity: 0, y: +100 }}
         animate={{ opacity: 1, y: 0 }}

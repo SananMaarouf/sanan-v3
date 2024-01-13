@@ -4,7 +4,22 @@ import portrait from '../../public/images/portrett_1_t.png';
 
 export const LandingHero = () => {
   return (
-    <div className="m-5 mx-auto flex max-w-sm flex-col overflow-hidden rounded-2xl border border-gray-300 bg-transparent md:max-w-screen-md md:flex-row lg:max-w-xl landscape:flex-row">
+    <div
+      className="
+      mx-auto
+      my-10 
+      flex 
+      flex-col 
+      overflow-hidden 
+      rounded-2xl 
+      border 
+      border-gray-300 
+      bg-transparent 
+      md:flex-row 
+      landscape:flex-row
+      
+      "
+    >
       <div className="xl:pl-12 relative flex flex-1 basis-1/2 flex-col px-4 py-6 lg:py-12 ">
         <h1 className="text-3xl">
           <span className="underline">Sanan Maarouf</span>
