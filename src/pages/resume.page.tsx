@@ -25,6 +25,7 @@ const ResumePage = () => {
             height={200}
             alt="Sanan Maarouf"
             className="rounded-md"
+            priority={true}
           />
           <section className="mx-auto my-auto flex flex-col">
             <h2>Sanan Maarouf</h2>

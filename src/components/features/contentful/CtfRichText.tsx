@@ -47,7 +47,7 @@ export const CtfRichText = ({ json, links }: ContentfulRichTextInterface) => {
   const baseOptions = contentfulBaseRichTextOptions({ links, json });
 
   return (
-    <article className="prose prose-lg mx-auto max-w-none text-black md:w-4/5">
+    <article className="prose prose-lg mx-auto max-w-none text-black dark:text-white md:w-4/5">
       {documentToReactComponents(json, baseOptions)}
     </article>
   );

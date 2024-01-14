@@ -6,6 +6,9 @@
 @import '~photoswipe/dist/photoswipe.css';
 
 @layer base {
+  body{
+    @apply dark:bg-gray-800 bg-white;
+  }
   html {
     @apply scroll-smooth;
   }

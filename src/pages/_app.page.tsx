@@ -2,6 +2,7 @@ import { ContentfulLivePreviewProvider } from '@contentful/live-preview/react';
 import { appWithTranslation } from 'next-i18next';
 import type { AppProps } from 'next/app';
 import './utils/globals.css';
+import { ThemeProvider } from 'next-themes';
 import '@contentful/live-preview/style.css';
 import { useRouter } from 'next/router';
 
@@ -22,12 +23,14 @@ const App = ({ Component, pageProps }: AppProps) => {
       locale={locale || 'en-US'}
     >
       <>
-        <main className={`font-sans`}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </main>
-        <div id="portal" className={`font-sans`} />
+        <ThemeProvider attribute="class">
+          <main className={`font-sans`}>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </main>
+          <div id="portal" className={`font-sans`} />
+        </ThemeProvider>
       </>
     </ContentfulLivePreviewProvider>
   );
