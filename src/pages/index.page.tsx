@@ -50,9 +50,9 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
               {t('landingPage.latestArticles')}
             </h2>
             <Link href={'/posts'}>
-              <div className="flex flex-row hover:ml-2 hover:underline">
+              <div className="flex flex-row rounded-md border-2 border-white hover:ml-2 hover:border-2 hover:border-slate-700 hover:underline">
                 <h3 className="w-20 py-1 text-center text-xl">{t('landingPage.see_all')}</h3>
-                <span className="flex w-6">
+                <span className="mr-1 flex w-6">
                   <FontAwesomeIcon icon={faArrowRight} />
                 </span>
               </div>
