@@ -50,7 +50,7 @@ export const getStaticProps: GetStaticProps = async ({ locale, draftMode: previe
     const gqlClient = preview ? previewClient : client;
 
     const blogPostsData = await gqlClient.postEntryCollection({
-      limit: 6,
+      limit: 7,
       locale,
       order: PostEntryOrder.PublishedDateDesc,
       where: {},
