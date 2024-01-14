@@ -49,5 +49,46 @@
   "notFound": {
     "title": "Page not found",
     "description": "This page doesn't seem to exist. <0>Click here</0> to go back the homepage."
+  },
+  "resume": {
+    "jobtitle": "Fullstack Developer",
+    "location": "Oslo, Norway",
+    "summary": "developer",
+    "experience": {
+      "title": "Experience",
+      "fsd": "System Developer",
+      "laft": "LAFT Software AS",
+      "laftDate":"Oktober 2021 - present",
+      "machinist": "Machinist",
+      "nfkino":"Nordisk Film Kino AS",
+      "nfkinoDate":"June 2018 - August 2018"
+    },
+    "education":{
+      "title": "Education",
+      "usn": "University of South-Eastern Norway",
+      "it": "IT and Information Systems",
+      "bachelor": "Bachelor's degree",
+      "bachelorDate": "August 2018 - June 2021",
+      "vgs": "Horten High School",
+      "field": "General Studies",
+      "vgsDate": "August 2013 - May 2016"
+    },
+    "skills": {
+      "title": "Skills",
+      "other": "Other"
+    },
+    "languages": {
+      "title": "Languages",
+      "norwegian": "Norwegian",
+      "english": "English",
+      "kurdish": "Kurdish",
+      "turkish": "Turkish",
+      "german": "German"
+    },
+    "footer":{
+      "title": "Like what you see?",
+      "prompt":"Download my resume",
+      "download": "Download"
+    }
   }
 }

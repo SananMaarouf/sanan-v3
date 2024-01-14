@@ -1,20 +1,19 @@
-import React from 'react';
 import { Container } from '@src/components/shared/container';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
 import { useTranslation } from 'next-i18next';
-import NextImage, { ImageProps as NextImageProps } from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot, faDownload } from '@fortawesome/free-solid-svg-icons';
+import NextImage from 'next/image';
+import { getServerSideTranslations } from './utils/get-serverside-translations';
+import { GetStaticProps } from 'next';
 
 const ResumePage = () => {
   const { t } = useTranslation();
+
   const imgUrl = '/images/portrett_1_t.png';
   const frontend = ['HTML5', 'CSS3', 'SCSS', 'JavaScript', 'Next.js', 'Vue.js'];
   const backend = ['Ruby', 'Java', 'Python', 'Dart', 'PHP'];
   const database = ['MySQL', 'Firebase'];
   const other = ['Git', 'Jira', 'Tableau', 'AdobeXD', 'Figma', 'Microsoft Office 365'];
-  const languages = ['Norwegian', 'English', 'Kurdish', 'Turkish', 'German'];
   return (
     <Container className="flex max-w-3xl flex-col">
       <section className="">
@@ -29,23 +28,23 @@ const ResumePage = () => {
           />
           <section className="mx-auto my-auto flex flex-col">
             <h2>Sanan Maarouf</h2>
-            <p>Full-Stack developer</p>
+            <p>{t('resume.jobtitle')}</p>
             <p>+47 47264992</p>
             <div className="flex flex-row p-2">
               <FontAwesomeIcon icon={faLocationDot} />
-              <p className="ml-2">Oslo, Norway</p>
+              <p className="ml-2">{t('resume.location')}</p>
             </div>
           </section>
         </section>
         {/* about me */}
-        <section className="flex w-full flex-row justify-center">
-          <p className="text-lg"> Experienced full stack developer</p>
-        </section>
+        {/*  <section className="flex w-full flex-row justify-center">
+          <p className="text-lg"> {t("resume.summary")}</p>
+        </section> */}
         {/* page divider */}
         <hr className="mx-auto my-4 h-1 w-full rounded border-0 bg-gray-700"></hr>
       </section>
       <section>
-        <h2>Experience</h2>
+        <h2>{t('resume.experience.title')}</h2>
         <section className="flex flex-row">
           {/* the timeline line */}
           <section className="my-auto flex ">
@@ -56,17 +55,17 @@ const ResumePage = () => {
             <div className="flex items-center pt-3">
               <div className="-ml-[0.33rem] mr-3 h-[7px] w-[7px] rounded-full bg-gray-500" />
               <div className="flex flex-col">
-                <h3 className="font-bold">Fullstack system developer</h3>
-                <h3 className="font-semibold">LAFT Software AS</h3>
-                <p className="mb-3">Oktober 2021 - present</p>
+                <h3 className="font-bold">{t('resume.experience.fsd')}</h3>
+                <h3 className="font-semibold">{t('resume.experience.laft')}</h3>
+                <p className="mb-3">{t('resume.experience.laftDate')}</p>
               </div>
             </div>
             <div className="flex items-center pt-3">
               <div className="-ml-[0.33rem] mr-3 h-[7px] w-[7px] rounded-full bg-gray-500" />
               <div className="flex flex-col">
-                <h3 className="font-bold">Cinema machinist</h3>
-                <h3 className="font-semibold">NF Kino Horten</h3>
-                <p className="mb-3">Juni 2018 - August 2018</p>
+                <h3 className="font-bold">{t('resume.experience.machinist')}</h3>
+                <h3 className="font-semibold">{t('resume.experience.nfkino')}</h3>
+                <p className="mb-3">{t('resume.experience.nfkinoDate')}</p>
               </div>
             </div>
           </section>
@@ -75,7 +74,7 @@ const ResumePage = () => {
         <hr className="mx-auto my-4 h-1 w-full rounded border-0 bg-gray-700"></hr>
       </section>
       <section>
-        <h2>Education:</h2>
+        <h2>{t('resume.education.title')}:</h2>
         {/* Add your education details here */}
         <section className="flex flex-row">
           {/* the timeline line */}
@@ -87,18 +86,18 @@ const ResumePage = () => {
             <div className="flex items-center pt-3">
               <div className="-ml-[0.33rem] mr-3 h-[7px] w-[7px] rounded-full bg-gray-500" />
               <div className="flex flex-col">
-                <h3 className="font-bold">Universitetet i Sør-Øst Norge</h3>
-                <h3 className="font-semibold">IT og Informasjonssystemer</h3>
-                <h3 className="font-semibold">Bachelorgrad</h3>
-                <p className="mb-3">August 2018 - Juni 2021</p>
+                <h3 className="font-bold">{t('resume.education.usn')}</h3>
+                <h3 className="font-semibold">{t('resume.education.it')}</h3>
+                <h3 className="font-semibold">{t('resume.education.bachelor')}</h3>
+                <p className="mb-3">{t('resume.education.bachelorDate')}</p>
               </div>
             </div>
             <div className="flex items-center pt-3">
               <div className="-ml-[0.33rem] mr-3 h-[7px] w-[7px] rounded-full bg-gray-500" />
               <div className="flex flex-col">
-                <h3 className="font-bold">Horten Videregående Skole</h3>
-                <h3 className="font-semibold">Generell studiekompetanse</h3>
-                <p className="mb-3">August 2013 - Mai 2016</p>
+                <h3 className="font-bold">{t('resume.education.vgs')}</h3>
+                <h3 className="font-semibold">{t('resume.education.field')}</h3>
+                <p className="mb-3">{t('resume.education.vgsDate')}</p>
               </div>
             </div>
           </section>
@@ -107,7 +106,7 @@ const ResumePage = () => {
         <hr className="mx-auto my-4 h-1 w-full rounded border-0 bg-gray-700"></hr>
       </section>
       <section>
-        <h2>Skills:</h2>
+        <h2>{t('resume.skills.title')}</h2>
         {/* Add your skills here */}
         <section className="flex flex-row">
           <section className="flex flex-col">
@@ -156,7 +155,7 @@ const ResumePage = () => {
             </div>
             <div className="flex items-center pt-3">
               <div className="flex flex-col">
-                <h3 className="font-bold">Other:</h3>
+                <h3 className="font-bold">{t('resume.skills.other')}</h3>
                 <div className="flex flex-row flex-wrap">
                   {other.map((item, index) => (
                     <p
@@ -175,20 +174,36 @@ const ResumePage = () => {
         <hr className="mx-auto my-4 h-1 w-full rounded border-0 bg-gray-700"></hr>
       </section>
       <section>
-        <h2>Languages:</h2>
-        {/* Add your skills here */}
+        <h2>{t('resume.languages.title')}</h2>
         <section className="flex flex-row">
           <section className="flex flex-col">
             <div className="items-center pt-1">
               <div className="flex flex-row flex-wrap">
-                {languages.map((item, index) => (
-                  <p
-                    key={index}
-                    className={`ml-2 mt-1 flex rounded-md bg-gray-50 px-3 py-1 text-lg text-gray-600 ring-1 ring-inset ring-gray-500/10`}
-                  >
-                    {item}
-                  </p>
-                ))}
+                <p
+                  className={`ml-2 mt-1 flex rounded-md bg-gray-50 px-3 py-1 text-lg text-gray-600 ring-1 ring-inset ring-gray-500/10`}
+                >
+                  {t('resume.languages.norwegian')}
+                </p>
+                <p
+                  className={`ml-2 mt-1 flex rounded-md bg-gray-50 px-3 py-1 text-lg text-gray-600 ring-1 ring-inset ring-gray-500/10`}
+                >
+                  {t('resume.languages.english')}
+                </p>
+                <p
+                  className={`ml-2 mt-1 flex rounded-md bg-gray-50 px-3 py-1 text-lg text-gray-600 ring-1 ring-inset ring-gray-500/10`}
+                >
+                  {t('resume.languages.german')}
+                </p>
+                <p
+                  className={`ml-2 mt-1 flex rounded-md bg-gray-50 px-3 py-1 text-lg text-gray-600 ring-1 ring-inset ring-gray-500/10`}
+                >
+                  {t('resume.languages.kurdish')}
+                </p>
+                <p
+                  className={`ml-2 mt-1 flex rounded-md bg-gray-50 px-3 py-1 text-lg text-gray-600 ring-1 ring-inset ring-gray-500/10`}
+                >
+                  {t('resume.languages.turkish')}
+                </p>
               </div>
             </div>
           </section>
@@ -198,8 +213,8 @@ const ResumePage = () => {
       </section>
       {/* button to download CV-Sanan.pdf from public/files */}
       <section className="mx-auto flex flex-col">
-        <p className="text-center text-2xl">Like what you see?</p>
-        <p className="mb-2 text-center text-xl">Download my resume</p>
+        <p className="text-center text-2xl">{t('resume.footer.title')}</p>
+        <p className="mb-2 text-center text-xl">{t('resume.footer.prompt')}</p>
         <a
           className="
                 flex 
@@ -212,7 +227,9 @@ const ResumePage = () => {
           download
           rel="noopener noreferrer"
         >
-          <p className="ml-2 py-2 text-lg font-semibold text-white">Download</p>
+          <p className="ml-2 py-2 text-lg font-semibold text-white">
+            {t('resume.footer.download')}
+          </p>
           <button className="ml-0.5 mr-2 block w-6 self-center">
             <FontAwesomeIcon icon={faDownload} style={{ color: '#ffffff' }} />
           </button>
@@ -222,4 +239,11 @@ const ResumePage = () => {
   );
 };
 
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await getServerSideTranslations(locale)),
+    },
+  };
+};
 export default ResumePage;
