@@ -918,6 +918,7 @@ export type PostEntry = Entry & {
   slug?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
   sys: Sys;
+  technologiesCollection?: Maybe<PostEntryTechnologiesCollection>;
   title?: Maybe<Scalars['String']>;
 };
 
@@ -992,6 +993,17 @@ export type PostEntrySlugArgs = {
 /** [See type definition](https://app.contentful.com/spaces/rxqss14ckb97/content_types/postEntry) */
 export type PostEntrySubtitleArgs = {
   locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/rxqss14ckb97/content_types/postEntry) */
+export type PostEntryTechnologiesCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Array<InputMaybe<PostEntryTechnologiesCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<TechnologiesFilter>;
 };
 
 
@@ -1093,6 +1105,8 @@ export type PostEntryFilter = {
   subtitle_not_contains?: InputMaybe<Scalars['String']>;
   subtitle_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   sys?: InputMaybe<SysFilter>;
+  technologies?: InputMaybe<CfTechnologiesNestedFilter>;
+  technologiesCollection_exists?: InputMaybe<Scalars['Boolean']>;
   title?: InputMaybe<Scalars['String']>;
   title_contains?: InputMaybe<Scalars['String']>;
   title_exists?: InputMaybe<Scalars['Boolean']>;
@@ -1136,8 +1150,30 @@ export enum PostEntryOrder {
   TitleDesc = 'title_DESC'
 }
 
+export type PostEntryTechnologiesCollection = {
+  __typename?: 'PostEntryTechnologiesCollection';
+  items: Array<Maybe<Technologies>>;
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+  total: Scalars['Int'];
+};
+
+export enum PostEntryTechnologiesCollectionOrder {
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
 export type Query = {
   __typename?: 'Query';
+  _node?: Maybe<_Node>;
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
   componentRichImage?: Maybe<ComponentRichImage>;
@@ -1151,6 +1187,15 @@ export type Query = {
   pageLandingCollection?: Maybe<PageLandingCollection>;
   postEntry?: Maybe<PostEntry>;
   postEntryCollection?: Maybe<PostEntryCollection>;
+  technologies?: Maybe<Technologies>;
+  technologiesCollection?: Maybe<TechnologiesCollection>;
+};
+
+
+export type Query_NodeArgs = {
+  id: Scalars['ID'];
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -1265,6 +1310,23 @@ export type QueryPostEntryCollectionArgs = {
   where?: InputMaybe<PostEntryFilter>;
 };
 
+
+export type QueryTechnologiesArgs = {
+  id: Scalars['String'];
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type QueryTechnologiesCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Array<InputMaybe<TechnologiesOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<TechnologiesFilter>;
+};
+
 export type ResourceLink = {
   __typename?: 'ResourceLink';
   sys: ResourceSys;
@@ -1324,6 +1386,110 @@ export type SysFilter = {
   publishedVersion_not_in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
 };
 
+/** name of tech i have used in a programming project [See type definition](https://app.contentful.com/spaces/rxqss14ckb97/content_types/technologies) */
+export type Technologies = Entry & {
+  __typename?: 'Technologies';
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<TechnologiesLinkingCollections>;
+  name?: Maybe<Scalars['String']>;
+  sys: Sys;
+};
+
+
+/** name of tech i have used in a programming project [See type definition](https://app.contentful.com/spaces/rxqss14ckb97/content_types/technologies) */
+export type TechnologiesLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** name of tech i have used in a programming project [See type definition](https://app.contentful.com/spaces/rxqss14ckb97/content_types/technologies) */
+export type TechnologiesNameArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+export type TechnologiesCollection = {
+  __typename?: 'TechnologiesCollection';
+  items: Array<Maybe<Technologies>>;
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+  total: Scalars['Int'];
+};
+
+export type TechnologiesFilter = {
+  AND?: InputMaybe<Array<InputMaybe<TechnologiesFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<TechnologiesFilter>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  name?: InputMaybe<Scalars['String']>;
+  name_contains?: InputMaybe<Scalars['String']>;
+  name_exists?: InputMaybe<Scalars['Boolean']>;
+  name_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  name_not?: InputMaybe<Scalars['String']>;
+  name_not_contains?: InputMaybe<Scalars['String']>;
+  name_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  sys?: InputMaybe<SysFilter>;
+};
+
+export type TechnologiesLinkingCollections = {
+  __typename?: 'TechnologiesLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+  postEntryCollection?: Maybe<PostEntryCollection>;
+};
+
+
+export type TechnologiesLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type TechnologiesLinkingCollectionsPostEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Array<InputMaybe<TechnologiesLinkingCollectionsPostEntryCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+export enum TechnologiesLinkingCollectionsPostEntryCollectionOrder {
+  DateAsc = 'date_ASC',
+  DateDesc = 'date_DESC',
+  InternalNameAsc = 'internalName_ASC',
+  InternalNameDesc = 'internalName_DESC',
+  PublishedDateAsc = 'publishedDate_ASC',
+  PublishedDateDesc = 'publishedDate_DESC',
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
+}
+
+export enum TechnologiesOrder {
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export type _Node = {
+  _id: Scalars['ID'];
+};
+
 export type CfComponentSeoNestedFilter = {
   AND?: InputMaybe<Array<InputMaybe<CfComponentSeoNestedFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<CfComponentSeoNestedFilter>>>;
@@ -1359,6 +1525,20 @@ export type CfComponentSeoNestedFilter = {
   sys?: InputMaybe<SysFilter>;
 };
 
+export type CfTechnologiesNestedFilter = {
+  AND?: InputMaybe<Array<InputMaybe<CfTechnologiesNestedFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<CfTechnologiesNestedFilter>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  name?: InputMaybe<Scalars['String']>;
+  name_contains?: InputMaybe<Scalars['String']>;
+  name_exists?: InputMaybe<Scalars['Boolean']>;
+  name_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  name_not?: InputMaybe<Scalars['String']>;
+  name_not_contains?: InputMaybe<Scalars['String']>;
+  name_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  sys?: InputMaybe<SysFilter>;
+};
+
 export type ImageFieldsFragment = { __typename: 'Asset', title?: string | null, description?: string | null, width?: number | null, height?: number | null, url?: string | null, contentType?: string | null, sys: { __typename?: 'Sys', id: string } };
 
 export type AboutMeFieldsFragment = { __typename?: 'PageAboutMe', title?: string | null, sys: { __typename?: 'Sys', id: string }, description?: { __typename?: 'PageAboutMeDescription', json: any } | null, image?: { __typename?: 'Asset', url?: string | null, width?: number | null, height?: number | null, title?: string | null, sys: { __typename?: 'Sys', id: string } } | null };
@@ -1374,7 +1554,7 @@ export type PageAboutMeQuery = { __typename?: 'Query', pageAboutMeCollection?: {
 export type ReferencePageBlogPostFieldsFragment = { __typename: 'PostEntry', slug?: string | null, publishedDate?: any | null, title?: string | null, subtitle?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, coverImage?: (
     { __typename?: 'Asset' }
     & ImageFieldsFragment
-  ) | null };
+  ) | null, technologiesCollection?: { __typename?: 'PostEntryTechnologiesCollection', items: Array<{ __typename?: 'Technologies', name?: string | null } | null> } | null };
 
 export type PageBlogPostFieldsFragment = { __typename: 'PostEntry', internalName?: string | null, slug?: string | null, publishedDate?: any | null, title?: string | null, subtitle?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, seoFields?: (
     { __typename?: 'ComponentSeo' }
@@ -1385,7 +1565,7 @@ export type PageBlogPostFieldsFragment = { __typename: 'PostEntry', internalName
   ) | null, description?: { __typename?: 'PostEntryDescription', json: any, links: { __typename?: 'PostEntryDescriptionLinks', entries: { __typename?: 'PostEntryDescriptionEntries', block: Array<(
           { __typename?: 'ComponentRichImage' }
           & RichImageFieldsFragment
-        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'PageAboutMe' } | { __typename?: 'PageLanding' } | { __typename?: 'PostEntry' } | null> } } } | null, embeddedImageCollection?: { __typename?: 'AssetCollection', items: Array<{ __typename?: 'Asset', fileName?: string | null, url?: string | null, width?: number | null, height?: number | null, size?: number | null } | null> } | null };
+        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'PageAboutMe' } | { __typename?: 'PageLanding' } | { __typename?: 'PostEntry' } | { __typename?: 'Technologies' } | null> } } } | null, embeddedImageCollection?: { __typename?: 'AssetCollection', items: Array<{ __typename?: 'Asset', fileName?: string | null, url?: string | null, width?: number | null, height?: number | null, size?: number | null } | null> } | null, technologiesCollection?: { __typename?: 'PostEntryTechnologiesCollection', items: Array<{ __typename?: 'Technologies', name?: string | null } | null> } | null };
 
 export type PostEntryQueryVariables = Exact<{
   slug: Scalars['String'];
@@ -1510,6 +1690,11 @@ export const ReferencePageBlogPostFieldsFragmentDoc = gql`
   coverImage {
     ...ImageFields
   }
+  technologiesCollection {
+    items {
+      name
+    }
+  }
 }
     `;
 export const SeoFieldsFragmentDoc = gql`
@@ -1575,6 +1760,11 @@ export const PageBlogPostFieldsFragmentDoc = gql`
       width
       height
       size
+    }
+  }
+  technologiesCollection {
+    items {
+      name
     }
   }
 }

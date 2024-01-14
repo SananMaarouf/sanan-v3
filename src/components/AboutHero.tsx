@@ -1,8 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
 import about from '../../public/images/about_me.png';
-
+import { useTranslation } from 'next-i18next';
 export const AboutHero = () => {
+  const { t } = useTranslation();
   return (
     <div
       className="
@@ -14,24 +15,32 @@ export const AboutHero = () => {
       border 
       border-gray-300 
       bg-transparent 
-      md:flex-row 
+      md:w-4/5
+      md:flex-row-reverse
       landscape:flex-row-reverse
       "
     >
-      <div className="xl:pl-12 relative flex flex-1 basis-1/2 flex-col px-4 py-6 lg:py-12 ">
-        <h1 className="text-3xl">
-          <span className="underline">About me</span>
-        </h1>
+      {/* text div */}
+      <div
+        className="
+        xl:pl-12 
+        relative 
+        flex 
+        flex-col 
+        px-4 
+        py-6 
+        md:w-2/3 
+        lg:py-12
+        "
+      >
+        <h1 className="text-3xl">{t('landingPage.about.title')}</h1>
         <div className="flex grow flex-col justify-between">
-          <p className="mt-2 text-lg md:mt-4">
-            I am a 26 year old full stack developer, working in Oslo, Norway I&apos;ve been
-            interested in computers for as long as I can remember. I really enjoy learning new
-            technologies and use them to create practical solutions.
-          </p>
+          <p className="mt-2 text-lg md:mt-4">{t('landingPage.about.subtitle')}</p>
         </div>
       </div>
-      <div className="flex bg-transparent md:max-w-lg lg:max-w-xl">
-        <Image src={about} placeholder="blur" alt="about me" />
+      {/* image div */}
+      <div className="xl:max-w-lg flex overflow-clip bg-transparent md:w-3/6">
+        <Image src={about} placeholder="blur" height={500} width={500} alt="about me" />
       </div>
     </div>
   );

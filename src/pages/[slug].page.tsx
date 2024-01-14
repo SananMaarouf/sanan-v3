@@ -1,6 +1,5 @@
 import { useContentfulLiveUpdates } from '@contentful/live-preview/react';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
-import { useTranslation } from 'next-i18next';
 
 import { getServerSideTranslations } from './utils/get-serverside-translations';
 
@@ -9,6 +8,7 @@ import { SeoFields } from '@src/components/features/seo';
 import { Container } from '@src/components/shared/container';
 import { client, previewClient } from '@src/lib/client';
 import { revalidateDuration } from '@src/pages/utils/constants';
+import { useTranslation } from 'next-i18next';
 
 /**
  * [slug].page.tsx is a Next.js page component responsible for rendering a specific blog post.
@@ -33,6 +33,7 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   const blogPost = useContentfulLiveUpdates(props.blogPost);
   const relatedPosts = blogPost?.relatedBlogPostsCollection?.items;
+  const technologies = blogPost?.technologiesCollection?.items?.map(item => item.name);
 
   if (!blogPost) return null;
 
@@ -42,9 +43,28 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       <Container>
         <ArticleHero article={blogPost} />
       </Container>
+
       <Container className="mt-8 max-w-4xl">
         <ArticleContent article={blogPost} />
+        <div className="mx-auto md:w-4/5">
+          <h3>{t('article.createdWith')}</h3>
+          {technologies && technologies.length > 0 && (
+            <div className="pt-2">
+              {technologies.map((item, index) => (
+                <p
+                  key={index}
+                  className={`inline-flex rounded-md bg-gray-50 px-3 py-1 text-lg text-gray-600 ring-1 ring-inset ring-gray-500/10 ${
+                    index !== 0 ? 'ml-2' : ''
+                  }`}
+                >
+                  {item}
+                </p>
+              ))}
+            </div>
+          )}
+        </div>
       </Container>
+
       {relatedPosts && relatedPosts.length > 0 && (
         <Container className="mt-8 max-w-5xl">
           <h2 className="mb-4 md:mb-6">{t('article.relatedArticles')}</h2>

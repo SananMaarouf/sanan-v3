@@ -11,6 +11,11 @@ fragment ReferencePageBlogPostFields on PostEntry {
   coverImage {
     ...ImageFields
   }
+  technologiesCollection{
+    items{
+      name
+    }
+  }
 }
 
 fragment PageBlogPostFields on PostEntry {
@@ -47,6 +52,11 @@ fragment PageBlogPostFields on PostEntry {
         width
         height
         size
+    }
+  }
+  technologiesCollection{
+    items{
+      name
     }
   }
 }

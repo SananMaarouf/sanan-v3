@@ -1,8 +1,6 @@
 import { useContentfulLiveUpdates } from '@contentful/live-preview/react';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { useTranslation } from 'next-i18next';
-import React from 'react';
-import Link from 'next/link';
 import { getServerSideTranslations } from './utils/get-serverside-translations';
 import { SeoFields } from '@src/components/features/seo';
 import { Container } from '@src/components/shared/container';
@@ -13,43 +11,53 @@ import { ArticleSlider } from '../components/ArticleSlider';
 import { LandingHero } from '../components/LandingHero';
 import { motion } from 'framer-motion';
 import { AboutHero } from '../components/AboutHero';
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import Link from 'next/link';
+
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { t } = useTranslation();
 
   const page = useContentfulLiveUpdates(props.page);
   const posts = useContentfulLiveUpdates(props.posts);
 
+  const motionProps = {
+    initial: { opacity: 0, y: +100 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0 },
+  };
+  const transitionCircOut = { ease: 'circOut', duration: 0.3 };
+  const transitionEaseOut = { ease: 'easeOut', duration: 0.3 };
+
   return (
     <>
       {page.seoFields && <SeoFields {...page.seoFields} />}
-      <motion.div
-        initial={{ opacity: 0, y: +100 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ ease: 'circOut', duration: 0.3 }}
-        exit={{ opacity: 0 }}
-      >
+      <motion.div {...motionProps} transition={transitionCircOut}>
         <Container>
           <LandingHero />
         </Container>
       </motion.div>
-      <motion.div
-        initial={{ opacity: 0, y: +100 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ ease: 'circOut', duration: 0.3 }}
-        exit={{ opacity: 0 }}
-      >
+      <motion.div {...motionProps} transition={transitionCircOut}>
         <Container className="mt-4">
           <AboutHero />
         </Container>
       </motion.div>
-      <motion.div
-        initial={{ opacity: 0, y: +100 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ ease: 'easeOut', duration: 0.3 }}
-        exit={{ opacity: 0 }}
-      >
-        <Container className="mt-4">
-          <h2 className="mb-2 md:mb-6">{t('landingPage.latestArticles')}</h2>
+      <motion.div {...motionProps} transition={transitionEaseOut}>
+        <Container className="mt-6 md:mt-20">
+          <div className="flex flex-row justify-between">
+            <h2 className="mb-2 text-center text-3xl md:ml-8 md:text-left">
+              {t('landingPage.latestArticles')}
+            </h2>
+            <Link href={'/posts'}>
+              <div className="flex flex-row hover:ml-2 hover:underline">
+                <h3 className="w-20 py-1 text-center text-xl">{t('landingPage.see_all')}</h3>
+                <span className="flex w-6">
+                  <FontAwesomeIcon icon={faArrowRight} />
+                </span>
+              </div>
+            </Link>
+          </div>
           <ArticleSlider articles={posts} />
         </Container>
       </motion.div>

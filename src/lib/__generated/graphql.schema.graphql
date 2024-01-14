@@ -656,6 +656,7 @@ type PostEntry implements Entry {
   slug(locale: String): String
   subtitle(locale: String): String
   sys: Sys!
+  technologiesCollection(limit: Int = 100, locale: String, order: [PostEntryTechnologiesCollectionOrder], preview: Boolean, skip: Int = 0, where: TechnologiesFilter): PostEntryTechnologiesCollection
   title(locale: String): String
 }
 
@@ -746,6 +747,8 @@ input PostEntryFilter {
   subtitle_not_contains: String
   subtitle_not_in: [String]
   sys: SysFilter
+  technologies: cfTechnologiesNestedFilter
+  technologiesCollection_exists: Boolean
   title: String
   title_contains: String
   title_exists: Boolean
@@ -780,12 +783,33 @@ enum PostEntryOrder {
   title_DESC
 }
 
+type PostEntryTechnologiesCollection {
+  items: [Technologies]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+enum PostEntryTechnologiesCollectionOrder {
+  name_ASC
+  name_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
 """
 The 'Quality' type represents quality as whole numeric values between `1` and `100`.
 """
 scalar Quality
 
 type Query {
+  _node(id: ID!, locale: String, preview: Boolean): _Node
   asset(id: String!, locale: String, preview: Boolean): Asset
   assetCollection(limit: Int = 100, locale: String, order: [AssetOrder], preview: Boolean, skip: Int = 0, where: AssetFilter): AssetCollection
   componentRichImage(id: String!, locale: String, preview: Boolean): ComponentRichImage
@@ -799,6 +823,8 @@ type Query {
   pageLandingCollection(limit: Int = 100, locale: String, order: [PageLandingOrder], preview: Boolean, skip: Int = 0, where: PageLandingFilter): PageLandingCollection
   postEntry(id: String!, locale: String, preview: Boolean): PostEntry
   postEntryCollection(limit: Int = 100, locale: String, order: [PostEntryOrder], preview: Boolean, skip: Int = 0, where: PostEntryFilter): PostEntryCollection
+  technologies(id: String!, locale: String, preview: Boolean): Technologies
+  technologiesCollection(limit: Int = 100, locale: String, order: [TechnologiesOrder], preview: Boolean, skip: Int = 0, where: TechnologiesFilter): TechnologiesCollection
 }
 
 type ResourceLink {
@@ -857,6 +883,80 @@ input SysFilter {
   publishedVersion_not_in: [Float]
 }
 
+"""
+name of tech i have used in a programming project [See type definition](https://app.contentful.com/spaces/rxqss14ckb97/content_types/technologies)
+"""
+type Technologies implements Entry {
+  contentfulMetadata: ContentfulMetadata!
+  linkedFrom(allowedLocales: [String]): TechnologiesLinkingCollections
+  name(locale: String): String
+  sys: Sys!
+}
+
+type TechnologiesCollection {
+  items: [Technologies]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input TechnologiesFilter {
+  AND: [TechnologiesFilter]
+  OR: [TechnologiesFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  name: String
+  name_contains: String
+  name_exists: Boolean
+  name_in: [String]
+  name_not: String
+  name_not_contains: String
+  name_not_in: [String]
+  sys: SysFilter
+}
+
+type TechnologiesLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  postEntryCollection(limit: Int = 100, locale: String, order: [TechnologiesLinkingCollectionsPostEntryCollectionOrder], preview: Boolean, skip: Int = 0): PostEntryCollection
+}
+
+enum TechnologiesLinkingCollectionsPostEntryCollectionOrder {
+  date_ASC
+  date_DESC
+  internalName_ASC
+  internalName_DESC
+  publishedDate_ASC
+  publishedDate_DESC
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
+enum TechnologiesOrder {
+  name_ASC
+  name_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+interface _Node {
+  _id: ID!
+}
+
 input cfComponentSeoNestedFilter {
   AND: [cfComponentSeoNestedFilter]
   OR: [cfComponentSeoNestedFilter]
@@ -889,5 +989,19 @@ input cfComponentSeoNestedFilter {
   pageTitle_not_contains: String
   pageTitle_not_in: [String]
   shareImagesCollection_exists: Boolean
+  sys: SysFilter
+}
+
+input cfTechnologiesNestedFilter {
+  AND: [cfTechnologiesNestedFilter]
+  OR: [cfTechnologiesNestedFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  name: String
+  name_contains: String
+  name_exists: Boolean
+  name_in: [String]
+  name_not: String
+  name_not_contains: String
+  name_not_in: [String]
   sys: SysFilter
 }

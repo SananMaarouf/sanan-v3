@@ -59,7 +59,21 @@ export const ArticleHero = ({ article }: ArticleHeroProps) => {
     }
   }, []);
   return (
-    <div className="border-gray300 flex flex-col overflow-hidden rounded-2xl border md:flex-row landscape:flex-row">
+    <div
+      className="
+      mx-auto 
+      flex 
+      flex-col 
+      overflow-hidden 
+      rounded-2xl 
+      border 
+      border-gray-300 
+      bg-transparent 
+      md:w-4/5
+      md:flex-row
+      landscape:flex-row
+      "
+    >
       {/* the title, subtitle, date */}
       <div className="xl:pl-12 relative flex flex-1 basis-1/2 flex-col justify-center px-4 py-6 lg:py-12">
         <h1 {...inspectorProps({ fieldId: 'title' })}>{title}</h1>
@@ -77,7 +91,6 @@ export const ArticleHero = ({ article }: ArticleHeroProps) => {
           </div>
         </div>
       </div>
-
       <div className="xl:px-24 flex max-w-xl flex-col px-4 pb-6 lg:px-16 ">
         <Gallery>
           <Slider {...settings}>

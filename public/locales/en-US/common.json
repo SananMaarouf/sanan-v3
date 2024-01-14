@@ -1,17 +1,21 @@
 {
   "article": {
     "relatedArticles": "Related works",
-    "featured": "featured"
+    "featured": "featured",
+    "createdWith": "Created with:"
   },
-  "about": {
-    "title": "About me"
-},
   "posts": {
     "allPosts": "All works"
   },
   "landingPage": {
+    "jobtitle": "Fullstack Developer",
     "no_articles": "No posts found",
-    "latestArticles": "Projects"
+    "latestArticles": "Projects",
+    "see_all": "See all",
+    "about": {
+      "title": "About me",
+      "subtitle": "I am a 26 year old full stack developer, working in Oslo, Norway. I've been interested in computers for as long as I can remember. I really enjoy learning new technologies and use them to create practical solutions."
+    }
   },
   "common": {
     "regionalSettings": "Regional Settings",
@@ -23,7 +27,7 @@
     "about": "About me",
     "posts": "Projects",
     "contact": "Contact me"
-},
+  },
   "footer": {
     "aboutUs": "about me",
     "developedBy": "Developed by",
