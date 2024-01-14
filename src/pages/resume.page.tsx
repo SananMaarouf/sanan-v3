@@ -21,10 +21,10 @@ const ResumePage = () => {
         <section className="flex flex-row">
           <NextImage
             src={imgUrl}
-            width={150}
-            height={150}
+            width={200}
+            height={200}
             alt="Sanan Maarouf"
-            className="rounded-3xl"
+            className="rounded-md"
           />
           <section className="mx-auto my-auto flex flex-col">
             <h2>Sanan Maarouf</h2>
