@@ -31,10 +31,7 @@ const ResumePage = () => {
             <h2>Sanan Maarouf</h2>
             <p>{t('resume.jobtitle')}</p>
             <p>+47 47264992</p>
-            <div className="flex flex-row p-2">
-              <FontAwesomeIcon icon={faLocationDot} />
-              <p className="ml-2">{t('resume.location')}</p>
-            </div>
+            <p>{t('resume.location')}</p>
           </section>
         </section>
         {/* about me */}

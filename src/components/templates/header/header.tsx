@@ -10,7 +10,7 @@ export const Header = () => {
   const router = useRouter();
 
   const isPostsPage = router.pathname === '/posts';
-
+  const isResumePage = router.pathname === '/resume';
   return (
     <header className="py-5">
       <nav>
@@ -35,7 +35,13 @@ export const Header = () => {
               >
                 {t('header.posts')}
               </Link>
-              <Link href="/resume" title="Resume" className="text-lg hover:underline">
+              <Link
+                href="/resume"
+                title="Resume"
+                className={`text-lg hover:underline ${
+                  isResumePage ? 'rounded-full border-2 border-gray-600 px-4 py-2' : ''
+                }`}
+              >
                 {t('header.resume')}
               </Link>
               <Link
