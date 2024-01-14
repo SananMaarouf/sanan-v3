@@ -33,7 +33,6 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   const page = useContentfulLiveUpdates(props.page);
   const posts = useContentfulLiveUpdates(props.posts);
-
   if (!posts) return;
 
   return (
@@ -51,10 +50,10 @@ export const getStaticProps: GetStaticProps = async ({ locale, draftMode: previe
     const gqlClient = preview ? previewClient : client;
 
     const blogPostsData = await gqlClient.postEntryCollection({
-      limit: 10,
+      limit: 6,
       locale,
       order: PostEntryOrder.PublishedDateDesc,
-
+      where: {},
       preview,
     });
     const posts = blogPostsData.postEntryCollection?.items;
