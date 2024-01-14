@@ -66,10 +66,13 @@ export const LanguageSelectorMobile = ({ localeName, displayName }) => {
               <Link
                 href="/posts"
                 title="Projects"
-                className="hover:underline"
+                className="text-lg hover:underline"
                 onClick={() => setShowDrawer(false)}
               >
                 {t('header.posts')}
+              </Link>
+              <Link href="/resume" title="Resume" className="text-lg hover:underline">
+                {t('header.resume')}
               </Link>
               <Link
                 href="#contact"
@@ -80,12 +83,12 @@ export const LanguageSelectorMobile = ({ localeName, displayName }) => {
                     ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                   setShowDrawer(false);
                 }}
-                className="hover:underline"
+                className="text-lg hover:underline"
               >
                 {t('header.contact')}
               </Link>
             </div>
-            <p className="text-colorBlack mt-8 text-base font-semibold"> {t('common.language')}</p>
+            <p className="text-colorBlack mt-8 text-lg font-semibold"> {t('common.language')}</p>
             <select
               className="border-gray300 mt-2 block w-full rounded-md border px-2 py-2 text-sm"
               defaultValue={locale}

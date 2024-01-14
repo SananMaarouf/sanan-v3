@@ -26,7 +26,8 @@
   "header": {
     "about": "About me",
     "posts": "Projects",
-    "contact": "Contact me"
+    "contact": "Contact me",
+    "resume": "Resume"
   },
   "footer": {
     "aboutUs": "about me",

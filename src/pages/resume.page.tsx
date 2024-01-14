@@ -1,0 +1,225 @@
+import React from 'react';
+import { Container } from '@src/components/shared/container';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { useTranslation } from 'next-i18next';
+import NextImage, { ImageProps as NextImageProps } from 'next/image';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLocationDot, faDownload } from '@fortawesome/free-solid-svg-icons';
+
+const ResumePage = () => {
+  const { t } = useTranslation();
+  const imgUrl = '/images/portrett_1_t.png';
+  const frontend = ['HTML5', 'CSS3', 'SCSS', 'JavaScript', 'Next.js', 'Vue.js'];
+  const backend = ['Ruby', 'Java', 'Python', 'Dart', 'PHP'];
+  const database = ['MySQL', 'Firebase'];
+  const other = ['Git', 'Jira', 'Tableau', 'AdobeXD', 'Figma', 'Microsoft Office 365'];
+  const languages = ['Norwegian', 'English', 'Kurdish', 'Turkish', 'German'];
+  return (
+    <Container className="flex max-w-3xl flex-col">
+      <section className="">
+        {/* picture and info */}
+        <section className="flex flex-row">
+          <NextImage
+            src={imgUrl}
+            width={150}
+            height={150}
+            alt="Sanan Maarouf"
+            className="rounded-3xl"
+          />
+          <section className="mx-auto my-auto flex flex-col">
+            <h2>Sanan Maarouf</h2>
+            <p>Full-Stack developer</p>
+            <p>+47 47264992</p>
+            <div className="flex flex-row p-2">
+              <FontAwesomeIcon icon={faLocationDot} />
+              <p className="ml-2">Oslo, Norway</p>
+            </div>
+          </section>
+        </section>
+        {/* about me */}
+        <section className="flex w-full flex-row justify-center">
+          <p className="text-lg"> Experienced full stack developer</p>
+        </section>
+        {/* page divider */}
+        <hr className="mx-auto my-4 h-1 w-full rounded border-0 bg-gray-700"></hr>
+      </section>
+      <section>
+        <h2>Experience</h2>
+        <section className="flex flex-row">
+          {/* the timeline line */}
+          <section className="my-auto flex ">
+            <hr className="mt-3 h-20 w-1 rounded bg-gray-300"></hr>
+          </section>
+          {/* the jobs on the timeline */}
+          <section className="flex flex-col">
+            <div className="flex items-center pt-3">
+              <div className="-ml-[0.33rem] mr-3 h-[7px] w-[7px] rounded-full bg-gray-500" />
+              <div className="flex flex-col">
+                <h3 className="font-bold">Fullstack system developer</h3>
+                <h3 className="font-semibold">LAFT Software AS</h3>
+                <p className="mb-3">Oktober 2021 - present</p>
+              </div>
+            </div>
+            <div className="flex items-center pt-3">
+              <div className="-ml-[0.33rem] mr-3 h-[7px] w-[7px] rounded-full bg-gray-500" />
+              <div className="flex flex-col">
+                <h3 className="font-bold">Cinema machinist</h3>
+                <h3 className="font-semibold">NF Kino Horten</h3>
+                <p className="mb-3">Juni 2018 - August 2018</p>
+              </div>
+            </div>
+          </section>
+        </section>
+        {/* page divider */}
+        <hr className="mx-auto my-4 h-1 w-full rounded border-0 bg-gray-700"></hr>
+      </section>
+      <section>
+        <h2>Education:</h2>
+        {/* Add your education details here */}
+        <section className="flex flex-row">
+          {/* the timeline line */}
+          <section className="my-auto flex ">
+            <hr className="mt-6 h-24 w-1 rounded bg-gray-300"></hr>
+          </section>
+          {/* the jobs on the timeline */}
+          <section className="flex flex-col">
+            <div className="flex items-center pt-3">
+              <div className="-ml-[0.33rem] mr-3 h-[7px] w-[7px] rounded-full bg-gray-500" />
+              <div className="flex flex-col">
+                <h3 className="font-bold">Universitetet i Sør-Øst Norge</h3>
+                <h3 className="font-semibold">IT og Informasjonssystemer</h3>
+                <h3 className="font-semibold">Bachelorgrad</h3>
+                <p className="mb-3">August 2018 - Juni 2021</p>
+              </div>
+            </div>
+            <div className="flex items-center pt-3">
+              <div className="-ml-[0.33rem] mr-3 h-[7px] w-[7px] rounded-full bg-gray-500" />
+              <div className="flex flex-col">
+                <h3 className="font-bold">Horten Videregående Skole</h3>
+                <h3 className="font-semibold">Generell studiekompetanse</h3>
+                <p className="mb-3">August 2013 - Mai 2016</p>
+              </div>
+            </div>
+          </section>
+        </section>
+        {/* page divider */}
+        <hr className="mx-auto my-4 h-1 w-full rounded border-0 bg-gray-700"></hr>
+      </section>
+      <section>
+        <h2>Skills:</h2>
+        {/* Add your skills here */}
+        <section className="flex flex-row">
+          <section className="flex flex-col">
+            <div className="items-center pt-3">
+              <h3 className="font-bold">Frontend:</h3>
+              <div className="flex flex-row flex-wrap">
+                {frontend.map((item, index) => (
+                  <p
+                    key={index}
+                    className={`ml-2 mt-1 flex rounded-md bg-gray-50 px-3 py-1 text-lg text-gray-600 ring-1 ring-inset ring-gray-500/10`}
+                  >
+                    {item}
+                  </p>
+                ))}
+              </div>
+            </div>
+            <div className="flex items-center pt-3">
+              <div className="flex flex-col">
+                <h3 className="font-bold">Backend:</h3>
+                <div className="flex flex-row">
+                  {backend.map((item, index) => (
+                    <p
+                      key={index}
+                      className={`ml-2 mt-1 flex rounded-md bg-gray-50 px-3 py-1 text-lg text-gray-600 ring-1 ring-inset ring-gray-500/10`}
+                    >
+                      {item}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center pt-3">
+              <div className="flex flex-col">
+                <h3 className="font-bold">Database:</h3>
+                <div className="flex flex-row">
+                  {database.map((item, index) => (
+                    <p
+                      key={index}
+                      className={`ml-2 mt-1 flex rounded-md bg-gray-50 px-3 py-1 text-lg text-gray-600 ring-1 ring-inset ring-gray-500/10`}
+                    >
+                      {item}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center pt-3">
+              <div className="flex flex-col">
+                <h3 className="font-bold">Other:</h3>
+                <div className="flex flex-row flex-wrap">
+                  {other.map((item, index) => (
+                    <p
+                      key={index}
+                      className={`ml-2 mt-1 flex rounded-md bg-gray-50 px-3 py-1 text-lg text-gray-600 ring-1 ring-inset ring-gray-500/10`}
+                    >
+                      {item}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+        {/* page divider */}
+        <hr className="mx-auto my-4 h-1 w-full rounded border-0 bg-gray-700"></hr>
+      </section>
+      <section>
+        <h2>Languages:</h2>
+        {/* Add your skills here */}
+        <section className="flex flex-row">
+          <section className="flex flex-col">
+            <div className="items-center pt-1">
+              <div className="flex flex-row flex-wrap">
+                {languages.map((item, index) => (
+                  <p
+                    key={index}
+                    className={`ml-2 mt-1 flex rounded-md bg-gray-50 px-3 py-1 text-lg text-gray-600 ring-1 ring-inset ring-gray-500/10`}
+                  >
+                    {item}
+                  </p>
+                ))}
+              </div>
+            </div>
+          </section>
+        </section>
+        {/* page divider */}
+        <hr className="mx-auto my-4 h-1 w-full rounded border-0 bg-gray-700"></hr>
+      </section>
+      {/* button to download CV-Sanan.pdf from public/files */}
+      <section className="mx-auto flex flex-col">
+        <p className="text-center text-2xl">Like what you see?</p>
+        <p className="mb-2 text-center text-xl">Download my resume</p>
+        <a
+          className="
+                flex 
+                flex-row 
+                justify-center 
+                rounded-lg 
+                bg-blue-600 
+                hover:bg-blue-900"
+          href="/files/CV-Sanan.pdf"
+          download
+          rel="noopener noreferrer"
+        >
+          <p className="ml-2 py-2 text-lg font-semibold text-white">Download</p>
+          <button className="ml-0.5 mr-2 block w-6 self-center">
+            <FontAwesomeIcon icon={faDownload} style={{ color: '#ffffff' }} />
+          </button>
+        </a>
+      </section>
+    </Container>
+  );
+};
+
+export default ResumePage;

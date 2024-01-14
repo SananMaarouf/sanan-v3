@@ -26,7 +26,8 @@
   "header": {
     "about": "Om meg",
     "posts": "Innlegg",
-    "contact": "Kontakt meg"
+    "contact": "Kontakt meg",
+    "resume": "CV"
   },
   "footer": {
     "aboutUs": "Om meg",

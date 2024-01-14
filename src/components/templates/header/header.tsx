@@ -29,11 +29,14 @@ export const Header = () => {
               <Link
                 href="/posts"
                 title="Projects"
-                className={`hover:underline ${
+                className={`text-lg hover:underline ${
                   isPostsPage ? 'rounded-full border-2 border-gray-600 px-4 py-2' : ''
                 }`}
               >
                 {t('header.posts')}
+              </Link>
+              <Link href="/resume" title="Resume" className="text-lg hover:underline">
+                {t('header.resume')}
               </Link>
               <Link
                 href="#contact"
@@ -43,7 +46,7 @@ export const Header = () => {
                     .querySelector('#contact')
                     ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }}
-                className="hover:underline"
+                className="text-lg hover:underline"
               >
                 {t('header.contact')}
               </Link>
