@@ -11,7 +11,20 @@ export const Contact = () => {
     return (
       <div className="mt-3 text-center md:mt-0">
         <h2 className="text-center">{t('footer.contact.title')}</h2>
-        <Container className="md:border-gray300 mx-auto mt-1 max-w-xl rounded-2xl rounded-lg border-b bg-white p-6 shadow-lg">
+        <Container
+          className="
+          mx-auto 
+          mt-1 
+          max-w-xl 
+          rounded-lg 
+          border 
+          bg-white 
+          p-6 
+          text-black 
+          shadow-lg
+          md:border-gray-100 
+          "
+        >
           <h2>{t('footer.contact.success.messageSent')}</h2>
           <button
             onClick={resetForm}
