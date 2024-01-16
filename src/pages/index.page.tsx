@@ -68,11 +68,11 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
           <LandingHero />
         </Container>
       </motion.div>
-      <motion.div {...motionProps}>
+      {/* <motion.div {...motionProps}>
         <Container className="mt-4">
           <AboutHero />
         </Container>
-      </motion.div>
+      </motion.div> */}
       <motion.div {...motionProps} transition={transitionEaseOut}>
         <Container className="mt-6 md:mt-20">
           <div className="flex flex-row justify-between">

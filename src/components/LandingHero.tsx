@@ -38,6 +38,7 @@ export const LandingHero = () => {
           <h2 className="mt-2 text-lg md:mt-4 md:text-2xl lg:text-3xl">
             {t('landingPage.jobtitle')}
           </h2>
+          <p className="mt-2 text-lg md:mt-4">{t('landingPage.about.subtitle')}</p>
         </div>
       </div>
       <div className="flex justify-center bg-transparent md:max-w-lg lg:max-w-xl">
