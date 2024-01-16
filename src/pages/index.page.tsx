@@ -15,12 +15,14 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
+import { useState } from 'react';
 
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { t } = useTranslation();
 
   const page = useContentfulLiveUpdates(props.page);
   const posts = useContentfulLiveUpdates(props.posts);
+  const [isHovered, setIsHovered] = useState(false);
 
   const motionProps = {
     initial: { opacity: 0, y: +100 },
@@ -31,7 +33,6 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     initial: { opacity: 0, x: +100 },
     animate: { opacity: 1, x: 0 },
     exit: { opacity: 0 },
-    whileHover: { scale: 1.05 },
     whileTap: { scale: 0.95 },
   };
   const transitionCircOut = { ease: 'circOut', duration: 0.3 };
@@ -57,13 +58,20 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
             <h2 className="mb-2 text-center text-3xl md:ml-8 md:text-left">
               {t('landingPage.latestArticles')}
             </h2>
-            <motion.div {...slideProps} transition={transitionEaseIn}>
+            <motion.div
+              onHoverStart={() => setIsHovered(true)}
+              onHoverEnd={() => setIsHovered(false)}
+              {...slideProps}
+              transition={transitionEaseIn}
+            >
               <Link href={'/posts'}>
-                <div className="flex flex-row rounded-md border-2 border-white hover:ml-2 hover:border-2 hover:border-slate-700 hover:underline">
+                <div className="flex flex-row rounded-md border-2 border-white hover:ml-2 hover:border-2 hover:border-slate-700 hover:underline dark:border-gray-800 dark:hover:border-white">
                   <h3 className="w-20 py-1 text-center text-xl">{t('landingPage.seeAll')}</h3>
-                  <span className="mr-1 flex w-6">
-                    <FontAwesomeIcon icon={faArrowRight} />
-                  </span>
+                  <motion.div animate={{ x: isHovered ? 5 : 0 }}>
+                    <span className="mr-2 flex w-6 py-1 ">
+                      <FontAwesomeIcon icon={faArrowRight} />
+                    </span>
+                  </motion.div>
                 </div>
               </Link>
             </motion.div>
