@@ -103,7 +103,7 @@ export const ArticleHero = ({ article }: ArticleHeroProps) => {
               >
                 {({ ref, open }) => (
                   <button onClick={open} className="h-full self-center md:mx-auto">
-                    <div ref={ref}>
+                    <div ref={ref} className="max-h-[30rem] overflow-hidden">
                       <Image
                         src={imageAsset?.url?.toString() ?? ''}
                         width={imageAsset?.width ?? 0}
