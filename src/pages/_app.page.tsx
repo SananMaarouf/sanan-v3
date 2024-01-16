@@ -23,7 +23,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       locale={locale || 'en-US'}
     >
       <>
-        <ThemeProvider attribute="class">
+        <ThemeProvider defaultTheme="dark" enableSystem={false} attribute="class">
           <main className={`font-sans`}>
             <Layout>
               <Component {...pageProps} />

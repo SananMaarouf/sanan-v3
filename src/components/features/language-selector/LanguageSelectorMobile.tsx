@@ -1,4 +1,3 @@
-import { CloseIcon } from '@contentful/f36-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
@@ -9,14 +8,7 @@ import { twMerge } from 'tailwind-merge';
 import { Portal } from '@src/components/shared/portal';
 import { useTheme } from 'next-themes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faSun,
-  faEarthEurope,
-  faMoon,
-  faChevronUp,
-  faChevronDown,
-  faXmark,
-} from '@fortawesome/free-solid-svg-icons';
+import { faSun, faMoon, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 export const LanguageSelectorMobile = ({ localeName, displayName }) => {
   const { locale, locales } = useRouter();

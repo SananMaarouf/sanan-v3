@@ -48,7 +48,14 @@ export const AboutHero = () => {
       </div>
       {/* image div */}
       <div className="xl:max-w-lg flex overflow-clip bg-transparent md:w-3/6">
-        <Image src={about} placeholder="blur" height={500} width={500} alt="about me" />
+        <Image
+          src={about}
+          placeholder="blur"
+          priority={true}
+          height={500}
+          width={500}
+          alt="about me"
+        />
       </div>
     </div>
   );
