@@ -1,3 +1,5 @@
+The third iteration of my personal website series.
+Made with Next.JS, TailwindCSS and Contentful-headless-cms.
 
 ## Features
 
@@ -8,19 +10,6 @@
 - Generation of GraphQL[^2] typed code (schema, and types), in sync with the content types through graphql-codegen[^3].
 - Enhanced Developer Experience with TypeScript[^4].
 
-$~$
-
-## Getting started
-
-To get started, read the following guidelines.
-
-- [Environment variables](./README.md#environment-variables)
-- [Dependencies](./README.md#dependencies)
-- [Development](./README.md#development)
-- [Contentful API & GraphQL](./README.md#contentful-api--graphql)
-- [Deployment](./README.md#deployment)
-
-$~$
 
 ### Environment variables
 
@@ -29,8 +18,6 @@ In order to authenticate the requests to the Contentful APIs, the following valu
 - Your space ID: [https://www.contentful.com/help/find-space-id/](https://www.contentful.com/help/find-space-id/)
 - Contentful Delivery API token: [https://www.contentful.com/developers/docs/references/content-delivery-api/](https://www.contentful.com/developers/docs/references/content-delivery-api/)
 - Contentful Preview API token: [https://www.contentful.com/developers/docs/references/content-preview-api/](https://www.contentful.com/developers/docs/references/content-preview-api/)
-
-Rename the `.env.example` file to `.env` and add the necessary values.
 
 $~$
 
@@ -41,8 +28,6 @@ To install the necessary dependencies, run:
 ```bash
 yarn
 ```
-
-### Run the Starter Template in development mode
 
 ```bash
 yarn dev
