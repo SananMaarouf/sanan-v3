@@ -31,7 +31,7 @@ export const Contact = () => {
       <Container className="mt-1 flex flex-col justify-center md:mt-3">
         <form
           onSubmit={handleSubmit}
-          className="border-gray300 mx-auto max-w-xl rounded-2xl rounded-lg border bg-white p-6 shadow-lg "
+          className="border-gray300 mx-auto max-w-xl rounded-2xl rounded-lg border bg-white p-6 shadow-lg dark:shadow-gray-900 "
         >
           <label htmlFor="email" className="mb-2 block text-sm font-bold text-gray-700">
             {t('footer.contact.form.email')}
@@ -40,7 +40,7 @@ export const Contact = () => {
             id="email"
             type="email"
             name="email"
-            className="focus:shadow-outline mb-4 w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+            className="focus:shadow-outline mb-4 w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none dark:text-white"
           />
           <ValidationError prefix="Email" field="email" errors={state.errors} />
           <label htmlFor="message" className="mb-2 block text-sm font-bold text-gray-700">
@@ -49,7 +49,7 @@ export const Contact = () => {
           <textarea
             id="message"
             name="message"
-            className="focus:shadow-outline mb-4 w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+            className="focus:shadow-outline mb-4 w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none dark:text-white"
           />
           <ValidationError prefix="Message" field="message" errors={state.errors} />
           <button
