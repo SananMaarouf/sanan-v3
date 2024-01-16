@@ -12,14 +12,14 @@ export const Header = () => {
   const isPostsPage = router.pathname === '/posts';
   const isResumePage = router.pathname === '/resume';
   return (
-    <header className="sticky top-0 z-30 rounded-md bg-white bg-opacity-70 bg-clip-padding py-5 backdrop-blur-lg backdrop-filter dark:bg-gray-800 dark:bg-opacity-70 dark:backdrop-blur-md">
-      <nav>
-        <motion.div
-          initial={{ opacity: 0, y: -100 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ ease: 'easeOut', duration: 0.3 }}
-          exit={{ opacity: 0 }}
-        >
+    <header className="sticky top-0 z-30 rounded-md bg-white bg-opacity-70 bg-clip-padding py-5 backdrop-blur-lg backdrop-filter dark:bg-gray-100 dark:bg-opacity-70 dark:backdrop-blur-md">
+      <motion.div
+        initial={{ opacity: 0, y: -100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ ease: 'easeOut', duration: 2 }}
+        exit={{ opacity: 0 }}
+      >
+        <nav>
           <Container className="flex items-center justify-between">
             <Link href="/" title={t('common.homepage')}>
               <span className="text-2xl font-bold hover:underline">Sanan</span>
@@ -60,8 +60,8 @@ export const Header = () => {
 
             <LanguageSelector />
           </Container>
-        </motion.div>
-      </nav>
+        </nav>
+      </motion.div>
     </header>
   );
 };

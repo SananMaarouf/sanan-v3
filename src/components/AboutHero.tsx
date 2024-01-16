@@ -13,10 +13,18 @@ export const AboutHero = () => {
       overflow-hidden 
       rounded-2xl 
       border 
-      border-gray-300 
-      bg-transparent 
-      md:w-4/5
-      md:flex-row-reverse
+      border-gray-100 
+      bg-white
+      bg-opacity-70 
+      bg-clip-padding 
+      backdrop-blur-sm 
+      backdrop-filter 
+      dark:border-white
+      dark:bg-gray-100
+      dark:bg-opacity-50
+      dark:backdrop-blur-md
+      md:w-4/5 
+      md:flex-row-reverse 
       landscape:flex-row-reverse
       "
     >

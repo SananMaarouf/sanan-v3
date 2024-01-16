@@ -108,7 +108,7 @@ export const LanguageSelectorDesktop = ({ localeName, displayName }) => {
           aria-expanded={isOpen}
           aria-controls="menu-locale"
           className={twMerge(
-            'flex items-center rounded-md border-2 border-white px-2 font-normal uppercase hover:border-slate-700 dark:border-gray-800 dark:hover:border-white',
+            'flex items-center rounded-md border-2 border-white px-2 font-normal uppercase hover:border-gray-100 dark:border-gray-100 dark:hover:border-white',
             isOpen ? 'border-slate-700 dark:border-white' : '',
           )}
           onClick={() => setIsOpen(currentState => !currentState)}
@@ -125,7 +125,7 @@ export const LanguageSelectorDesktop = ({ localeName, displayName }) => {
           <ul
             ref={menuRef}
             className={twMerge(
-              'top-100 absolute right-0 z-10 w-32 translate-y-3 cursor-pointer rounded-md bg-white text-center text-base shadow dark:bg-gray-700',
+              'top-100 absolute right-0 z-10 w-32 translate-y-3 cursor-pointer rounded-md bg-white text-center text-base shadow dark:bg-gray-100',
               isOpen ? 'block' : 'hidden',
             )}
             id="menu-locale"
@@ -137,7 +137,7 @@ export const LanguageSelectorDesktop = ({ localeName, displayName }) => {
                 <Link
                   onKeyDown={e => handleMenuItemKeydown(e, index)}
                   role="menuitem"
-                  className="block rounded-md border-2 bg-white p-2 capitalize hover:border-gray-700 dark:border-gray-700 dark:bg-gray-700 dark:hover:border-white"
+                  className="block rounded-md border-2 bg-white p-2 capitalize hover:border-gray-700 dark:border-gray-700 dark:bg-gray-100 dark:hover:border-white"
                   href={{
                     pathname: router.pathname,
                     query: router.query,

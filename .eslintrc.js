@@ -36,6 +36,7 @@ module.exports = {
     "@typescript-eslint/no-use-before-define": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/ban-ts-comment": "off",
+    "react/no-unknown-property": "warn",
     "@typescript-eslint/no-unused-vars": [
       "warn",
       {

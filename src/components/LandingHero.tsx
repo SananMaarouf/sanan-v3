@@ -14,10 +14,19 @@ export const LandingHero = () => {
       overflow-hidden 
       rounded-2xl 
       border 
-      border-gray-300 
-      bg-transparent 
-      md:w-4/5
-      md:flex-row
+      border-gray-100
+      bg-white 
+      bg-opacity-5
+      bg-clip-padding 
+      backdrop-blur-sm 
+      backdrop-filter 
+      dark:border-white 
+      dark:bg-gray-100
+      dark:bg-opacity-50
+      dark:backdrop-blur-md
+      md:my-5
+      md:w-4/5 
+      md:flex-row 
       landscape:flex-row
       "
     >

@@ -11,6 +11,9 @@ module.exports = {
       lg: '960px',
     },
     extend: {
+      colors: {
+        'gray-100': '#121212',
+      },
       maxWidth: {
         '8xl': '90rem',
       },

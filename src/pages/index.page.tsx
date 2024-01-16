@@ -9,25 +9,36 @@ import { client, previewClient } from '@src/lib/client';
 import { revalidateDuration } from '@src/pages/utils/constants';
 import { ArticleSlider } from '../components/ArticleSlider';
 import { LandingHero } from '../components/LandingHero';
-import { motion } from 'framer-motion';
+import { delay, motion } from 'framer-motion';
 import { AboutHero } from '../components/AboutHero';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { Scene } from '@src/components/threejs/Scene';
+import { useMediaQuery } from 'react-responsive';
 
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { t } = useTranslation();
+  const [isDesktopOrLaptop, setIsDesktopOrLaptop] = useState(false);
+
+  useEffect(() => {
+    if (window.innerWidth >= 980) {
+      setIsDesktopOrLaptop(true);
+    }
+  }, []);
 
   const page = useContentfulLiveUpdates(props.page);
   const posts = useContentfulLiveUpdates(props.posts);
   const [isHovered, setIsHovered] = useState(false);
 
   const motionProps = {
-    initial: { opacity: 0, y: +100 },
+    initial: { opacity: 0, y: 0 },
     animate: { opacity: 1, y: 0 },
     exit: { opacity: 0 },
+    transition: { duration: 0.5, delay: 2 },
   };
   const slideProps = {
     initial: { opacity: 0, x: +100 },
@@ -35,19 +46,30 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     exit: { opacity: 0 },
     whileTap: { scale: 0.95 },
   };
-  const transitionCircOut = { ease: 'circOut', duration: 0.3 };
-  const transitionEaseOut = { ease: 'easeOut', duration: 0.3 };
-  const transitionEaseIn = { ease: 'backInOut', duration: 0.5 };
+  /* const transitionCircOut = { ease: 'linear', duration: 3 }; */
+  const transitionEaseOut = { ease: 'easeOut', duration: 1 };
+  const transitionEaseIn = { ease: 'backInOut', duration: 1 };
 
   return (
     <>
       {page.seoFields && <SeoFields {...page.seoFields} />}
-      <motion.div {...motionProps} transition={transitionCircOut}>
+      <div>
+        {isDesktopOrLaptop && (
+          <Canvas
+            style={{ position: 'fixed', zIndex: -1, height: '100%', width: '100%' }}
+            camera={{ fov: 100, near: 0.1, far: 200 }}
+          >
+            <Scene />
+          </Canvas>
+        )}
+      </div>
+
+      <motion.div {...motionProps}>
         <Container>
           <LandingHero />
         </Container>
       </motion.div>
-      <motion.div {...motionProps} transition={transitionCircOut}>
+      <motion.div {...motionProps}>
         <Container className="mt-4">
           <AboutHero />
         </Container>
@@ -65,7 +87,7 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
               transition={transitionEaseIn}
             >
               <Link href={'/posts'}>
-                <div className="flex flex-row rounded-md border-2 border-white hover:ml-2 hover:border-2 hover:border-slate-700 hover:underline dark:border-gray-800 dark:hover:border-white">
+                <div className="flex flex-row rounded-md border-2 border-white hover:ml-2 hover:border-2 hover:border-gray-100 hover:underline dark:border-gray-100 dark:hover:border-white">
                   <h3 className="w-20 py-1 text-center text-xl">{t('landingPage.seeAll')}</h3>
                   <motion.div animate={{ x: isHovered ? 5 : 0 }}>
                     <span className="mr-2 flex w-6 py-1 ">

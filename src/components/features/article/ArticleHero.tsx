@@ -67,8 +67,9 @@ export const ArticleHero = ({ article }: ArticleHeroProps) => {
       overflow-hidden 
       rounded-2xl 
       border 
-      border-gray-300 
-      bg-transparent 
+      border-gray-100 
+      bg-transparent
+      dark:border-white 
       md:w-4/5
       md:flex-row
       landscape:flex-row

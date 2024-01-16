@@ -12,6 +12,15 @@ interface SliderProps extends HTMLProps<HTMLDivElement> {
 }
 
 export const ArticleSlider = ({ articles }: SliderProps) => {
+  const motionProps = {
+    initial: { opacity: 0, y: 0 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0 },
+    transition: { duration: 0.5, delay: 2 },
+    whileHover: { scale: 1.05 },
+    whileTap: { scale: 0.95 },
+  };
+
   const { t } = useTranslation();
   return articles && articles.length > 0 ? (
     <Carousel
@@ -34,10 +43,27 @@ export const ArticleSlider = ({ articles }: SliderProps) => {
       {articles.map(article => {
         return article ? (
           <Carousel.Item key={article.sys.id}>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <div className="flex h-full w-full flex-col p-3">
+            <motion.div {...motionProps}>
+              <div
+                className="
+                flex 
+                h-full 
+                w-full 
+                flex-col 
+                border-gray-100
+                bg-white 
+              bg-opacity-70
+                bg-clip-padding 
+                p-3 
+                backdrop-blur-sm 
+                backdrop-filter
+              dark:bg-gray-100 
+                dark:bg-opacity-50 
+                dark:backdrop-blur-md
+                "
+              >
                 <Link className="flex h-full w-full flex-col" href={`/${article.slug}`}>
-                  <div className="flex h-full w-full flex-col overflow-hidden rounded-2xl border border-gray-300 shadow-sm">
+                  <div className="flex h-full w-full flex-col overflow-hidden rounded-2xl border-2 border-gray-100 shadow-sm dark:border-white">
                     {article.coverImage && (
                       <CtfImage
                         nextImageProps={{ className: 'object-cover aspect-[16/10] w-full' }}
@@ -63,13 +89,21 @@ export const ArticleSlider = ({ articles }: SliderProps) => {
     <div
       className="
       flex 
-      h-20 
+      h-20
+      h-full 
+      w-full 
       flex-col 
-      overflow-hidden
-      rounded-2xl 
-      border 
-      border-gray-300
-      text-center
+      border-gray-100 
+      bg-white
+      bg-opacity-70 
+    bg-clip-padding
+      p-3 
+      text-center 
+      backdrop-blur-sm 
+      backdrop-filter
+    dark:bg-gray-100 
+      dark:bg-opacity-50 
+      dark:backdrop-blur-md
       "
     >
       <p className="my-auto text-lg">{t('landingPage.no_articles')}</p>

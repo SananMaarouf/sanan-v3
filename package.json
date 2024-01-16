@@ -1,5 +1,5 @@
 {
-  "name": "template-blog-webapp-nextjs",
+  "name": "sanan-v3",
   "version": "0.1.0",
   "private": true,
   "engines": {
@@ -40,6 +40,8 @@
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@next/bundle-analyzer": "^13.0.4",
+    "@react-three/fiber": "^8.15.14",
+    "@react-three/postprocessing": "^2.15.12",
     "dotenv": "^16.0.3",
     "framer-motion": "^10.18.0",
     "graphql": "^16.6.0",
@@ -56,9 +58,11 @@
     "react-focus-lock": "^2.9.2",
     "react-grid-carousel": "^1.0.1",
     "react-photoswipe-gallery": "^3.0.0",
+    "react-responsive": "^9.0.2",
     "react-slick": "^0.29.0",
     "sharp": "^0.31.3",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "three": "^0.160.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.19.1",

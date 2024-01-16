@@ -65,7 +65,7 @@ export const LanguageSelectorMobile = ({ localeName, displayName }) => {
             className={twMerge(
               `fixed right-0 top-0 z-40 h-full w-[80vw] bg-white px-5 py-8 duration-300 ease-in-out `,
               showDrawer ? 'translate-x-0' : 'translate-x-full',
-              currentTheme == 'dark' ? 'dark:bg-gray-800' : 'bg-white',
+              currentTheme == 'dark' ? 'dark:bg-gray-100' : 'bg-white',
             )}
           >
             <div className="flex items-center">
