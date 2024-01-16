@@ -1,13 +1,16 @@
 import { Container } from '@src/components/shared/container';
 import { useTranslation } from 'next-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLocationDot, faDownload } from '@fortawesome/free-solid-svg-icons';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import NextImage from 'next/image';
 import { getServerSideTranslations } from './utils/get-serverside-translations';
 import { GetStaticProps } from 'next';
+import { useTheme } from 'next-themes';
 
 const ResumePage = () => {
   const { t } = useTranslation();
+  const { systemTheme, theme, setTheme } = useTheme();
+  const iconColor = theme === 'system' ? systemTheme : theme;
 
   const imgUrl = '/images/portrett_1_t.png';
   const frontend = [
@@ -26,7 +29,7 @@ const ResumePage = () => {
   return (
     <Container className="flex max-w-3xl flex-col">
       <section className="">
-        {/* picture and info */}
+        {/* picture and info and download button */}
         <section className="flex flex-row">
           <NextImage
             src={imgUrl}
@@ -37,10 +40,69 @@ const ResumePage = () => {
             priority={true}
           />
           <section className="mx-auto my-auto flex flex-col">
+            {/* button to download CV-Sanan.pdf from public/files */}
+            <section className="relative hidden w-full justify-end md:flex">
+              <a
+                className="
+              absolute 
+              -right-[10.5rem]
+              flex
+              h-10
+              w-10
+              flex-row
+              justify-center 
+              rounded-lg 
+              border-2 
+              border-gray-300
+              hover:border-gray-100
+              dark:border-gray-600
+              dark:hover:border-white"
+                href="/files/CV-Sanan.pdf"
+                download
+                rel="noopener noreferrer"
+              >
+                <button className="m-1 self-center">
+                  <FontAwesomeIcon
+                    icon={faDownload}
+                    height={'1.5rem'}
+                    width={'1.5rem'}
+                    style={{ color: iconColor }}
+                  />
+                </button>
+              </a>
+            </section>
+
             <h2>Sanan Maarouf</h2>
             <p>{t('resume.jobtitle')}</p>
             <p>+47 47264992</p>
             <p>{t('resume.location')}</p>
+            <a
+              className="
+              mt-10
+              flex 
+              w-full
+              flex-row
+              justify-center
+              rounded-lg 
+              border-2 
+              border-gray-300 
+              hover:border-gray-100
+              dark:border-gray-600
+              dark:hover:border-white
+              md:hidden"
+              href="/files/CV-Sanan.pdf"
+              download
+              rel="noopener noreferrer"
+            >
+              <button className="m-1 self-center">
+                <FontAwesomeIcon
+                  icon={faDownload}
+                  height={'1.5rem'}
+                  width={'1.5rem'}
+                  style={{ color: iconColor }}
+                />
+              </button>
+            </a>
           </section>
         </section>
         {/* about me */}
@@ -217,30 +279,6 @@ const ResumePage = () => {
         </section>
         {/* page divider */}
         <hr className="mx-auto my-4 h-1 w-full rounded border-0 bg-gray-700"></hr>
-      </section>
-      {/* button to download CV-Sanan.pdf from public/files */}
-      <section className="mx-auto flex flex-col">
-        <p className="text-center text-2xl">{t('resume.footer.title')}</p>
-        <p className="mb-2 text-center text-xl">{t('resume.footer.prompt')}</p>
-        <a
-          className="
-                flex 
-                flex-row 
-                justify-center 
-                rounded-lg 
-                bg-blue-600 
-                hover:bg-blue-900"
-          href="/files/CV-Sanan.pdf"
-          download
-          rel="noopener noreferrer"
-        >
-          <p className="ml-2 py-2 text-lg font-semibold text-white">
-            {t('resume.footer.download')}
-          </p>
-          <button className="ml-0.5 mr-2 block w-6 self-center">
-            <FontAwesomeIcon icon={faDownload} style={{ color: '#ffffff' }} />
-          </button>
-        </a>
       </section>
     </Container>
   );

@@ -13,6 +13,7 @@ import {
   faChevronUp,
   faChevronDown,
 } from '@fortawesome/free-solid-svg-icons';
+
 const useClickOutside = (ref, setIsOpen) => {
   useEffect(() => {
     const handleClickOutside = event => {

@@ -9,7 +9,7 @@ import { client, previewClient } from '@src/lib/client';
 import { revalidateDuration } from '@src/pages/utils/constants';
 import { ArticleSlider } from '../components/ArticleSlider';
 import { LandingHero } from '../components/LandingHero';
-import { delay, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { AboutHero } from '../components/AboutHero';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,7 +18,6 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Scene } from '@src/components/threejs/Scene';
-import { useMediaQuery } from 'react-responsive';
 
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { t } = useTranslation();
