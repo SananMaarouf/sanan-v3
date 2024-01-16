@@ -9,7 +9,7 @@ import { client, previewClient } from '@src/lib/client';
 import { revalidateDuration } from '@src/pages/utils/constants';
 import { ArticleSlider } from '../components/ArticleSlider';
 import { LandingHero } from '../components/LandingHero';
-import { motion } from 'framer-motion';
+import { delay, motion } from 'framer-motion';
 import { AboutHero } from '../components/AboutHero';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -39,15 +39,12 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     exit: { opacity: 0 },
     transition: { duration: 0.5, delay: 2 },
   };
-  const slideProps = {
-    initial: { opacity: 0, x: +100 },
-    animate: { opacity: 1, x: 0 },
+  const motionProps2 = {
+    initial: { opacity: 0, y: +100 },
+    animate: { opacity: 1, y: 0 },
     exit: { opacity: 0 },
-    whileTap: { scale: 0.95 },
+    transition: { duration: 1.2, delay: 3 },
   };
-  /* const transitionCircOut = { ease: 'linear', duration: 3 }; */
-  const transitionEaseOut = { ease: 'easeOut', duration: 1 };
-  const transitionEaseIn = { ease: 'backInOut', duration: 1 };
 
   return (
     <>
@@ -73,17 +70,16 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
           <AboutHero />
         </Container>
       </motion.div> */}
-      <motion.div {...motionProps} transition={transitionEaseOut}>
+      <motion.div {...motionProps2}>
         <Container className="mt-6 md:mt-20">
           <div className="flex flex-row justify-between">
             <h2 className="mb-2 text-center text-3xl md:ml-8 md:text-left">
               {t('landingPage.latestArticles')}
             </h2>
+            {/* see all button and animation for that */}
             <motion.div
               onHoverStart={() => setIsHovered(true)}
               onHoverEnd={() => setIsHovered(false)}
-              {...slideProps}
-              transition={transitionEaseIn}
             >
               <Link href={'/posts'}>
                 <div className="flex flex-row rounded-md border-2 border-white hover:ml-2 hover:border-2 hover:border-gray-100 hover:underline dark:border-gray-100 dark:hover:border-white">
