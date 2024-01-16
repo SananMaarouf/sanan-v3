@@ -10,7 +10,16 @@ const ResumePage = () => {
   const { t } = useTranslation();
 
   const imgUrl = '/images/portrett_1_t.png';
-  const frontend = ['HTML5', 'CSS3', 'SCSS', 'JavaScript', 'Next.js', 'Vue.js'];
+  const frontend = [
+    'HTML5',
+    'CSS3',
+    'SCSS',
+    'TailwindCSS',
+    'JavaScript',
+    'Next.js',
+    'Vue.js',
+    'Three.js',
+  ];
   const backend = ['Ruby', 'Java', 'Python', 'Dart', 'PHP'];
   const database = ['MySQL', 'Firebase'];
   const other = ['Git', 'Jira', 'Tableau', 'AdobeXD', 'Figma', 'Microsoft Office 365'];
