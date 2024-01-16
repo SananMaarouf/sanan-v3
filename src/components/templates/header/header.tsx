@@ -12,7 +12,7 @@ export const Header = () => {
   const isPostsPage = router.pathname === '/posts';
   const isResumePage = router.pathname === '/resume';
   return (
-    <header className="py-5">
+    <header className="sticky top-0 z-30 rounded-md bg-white bg-opacity-70 bg-clip-padding py-5 backdrop-blur-lg backdrop-filter dark:bg-gray-800 dark:bg-opacity-70 dark:backdrop-blur-md">
       <nav>
         <motion.div
           initial={{ opacity: 0, y: -100 }}
