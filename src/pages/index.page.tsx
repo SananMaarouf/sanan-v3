@@ -22,11 +22,11 @@ import { Scene } from '@src/components/threejs/Scene';
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { t } = useTranslation();
   const [isDesktopOrLaptop, setIsDesktopOrLaptop] = useState(false);
-
+  const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
-    if (window.innerWidth >= 980) {
-      setIsDesktopOrLaptop(true);
-    }
+    const userAgent = navigator.userAgent;
+    const mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+    setIsMobile(mobile);
   }, []);
 
   const page = useContentfulLiveUpdates(props.page);
@@ -50,14 +50,14 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     <>
       {page.seoFields && <SeoFields {...page.seoFields} />}
       <div>
-        {isDesktopOrLaptop && (
+        {!isMobile ? (
           <Canvas
             style={{ position: 'fixed', zIndex: -1, height: '100%', width: '100%' }}
             camera={{ fov: 100, near: 0.1, far: 200 }}
           >
             <Scene />
           </Canvas>
-        )}
+        ) : null}
       </div>
 
       <motion.div {...motionProps}>
