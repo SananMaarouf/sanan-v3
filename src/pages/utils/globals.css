@@ -31,6 +31,9 @@
   h4 {
     @apply text-xs font-semibold leading-normal md:text-base;
   }
+  .dark .prose a {
+    color: white;
+  }
 }
 
 .slick-track {
